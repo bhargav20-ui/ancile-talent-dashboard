@@ -1,0 +1,251 @@
+Candidate_ID,Name,Domain,Role,Skills,Experience_Years,Location,Status,Client_Company,Match_Score,Joined_Month
+ANC1001,Manoj Malhotra,AI/ML,ML Engineer,"OpenCV, PyTorch, LLMs, Deep Learning, Pandas, Statistics, Hugging Face, Python",1.3,Jaipur,Placed,Wipro,66.0,February 2024
+ANC1002,Latha Venkatesh,Web Development,Frontend Developer,"Express, JavaScript, Node.js, TypeScript",4.8,Bangalore,Placed,Deloitte,69.8,January 2026
+ANC1003,Manoj Patel,Cybersecurity,Security Analyst,"SIEM, Vulnerability Assessment, Wireshark, Cryptography",8.3,Chennai,Pending,N/A,45.5,July 2024
+ANC1004,Pooja Rajan,AI/ML,Data Scientist,"NLP, OpenCV, Statistics, Pandas, Scikit-learn, TensorFlow",7.9,Kochi,Placed,Tech Mahindra,81.3,September 2024
+ANC1005,Arjun Bhat,Business Consulting,IT Consultant,"Stakeholder Management, SAP, ITIL, Project Management, Excel, JIRA, Scrum",1.0,Ahmedabad,Placed,Capgemini,66.8,February 2026
+ANC1006,Venkat Bhat,Web Development,Backend Developer,"CSS, Express, Git, REST API, Vue.js, MongoDB, JavaScript",5.3,Delhi,Pending,N/A,45.1,July 2024
+ANC1007,Malathi Agarwal,Business Consulting,Project Manager,"PowerPoint, Excel, Stakeholder Management, Scrum, SAP",2.9,Chennai,Placed,Bosch,77.3,June 2024
+ANC1008,Padma Rao,Web Development,Full Stack Developer,"Vue.js, Bootstrap, Node.js, REST API, Redux, HTML",2.8,Chennai,Pending,N/A,61.4,May 2024
+ANC1009,Mohan Chatterjee,Data Analytics,Data Engineer,"Tableau, Seaborn, Excel, Pandas, Statistics",4.9,Kolkata,Pending,N/A,62.1,May 2024
+ANC1010,Vani Venkatesh,Data Analytics,Data Engineer,"Python, Data Visualization, Pandas, Power BI, Tableau",3.9,Hyderabad,Placed,Capgemini,93.1,February 2024
+ANC1011,Rajesh Reddy,Business Consulting,Business Analyst,"CRM, SAP, Project Management, SQL, Scrum",4.9,Pune,Placed,TCS,84.9,April 2026
+ANC1012,Prasad Shukla,Web Development,Backend Developer,"Express, REST API, JavaScript, React, Git, Vue.js, Bootstrap",1.3,Jaipur,Placed,Volvo,74.0,November 2026
+ANC1013,Harish Pillai,Web Development,Full Stack Developer,"CSS, Express, HTML, TypeScript, React, Vue.js, Bootstrap, REST API",1.8,Hyderabad,Placed,Amazon,82.4,November 2024
+ANC1014,Prasad Sharma,AI/ML,Data Scientist,"NLP, PyTorch, Statistics",2.7,Bangalore,Placed,Microsoft,98.2,May 2024
+ANC1015,Sneha Trivedi,Cybersecurity,Penetration Tester,"Vulnerability Assessment, Python, Splunk, Metasploit, Ethical Hacking, Firewall, Linux",0.8,Hyderabad,Pending,N/A,44.7,September 2026
+ANC1016,Padma Chatterjee,Business Consulting,Project Manager,"ITIL, Agile, Business Analysis, SQL, PowerPoint, CRM, Project Management, JIRA",8.0,Delhi,Placed,Cognizant,75.4,November 2025
+ANC1017,Padma Pandey,Cloud & DevOps,DevOps Engineer,"GCP, Docker, Linux, Git, Grafana, Kubernetes, Prometheus",6.1,Mumbai,Placed,Bosch,66.9,July 2026
+ANC1018,Lavanya Chatterjee,Cybersecurity,SOC Analyst,"Wireshark, Splunk, Firewall, OWASP, Metasploit, Vulnerability Assessment",3.1,Coimbatore,Placed,Capgemini,69.5,November 2026
+ANC1019,Sneha Bhat,Cloud & DevOps,Cloud Engineer,"Git, Kubernetes, Docker, Grafana",7.0,Kolkata,Placed,Accenture,68.6,October 2024
+ANC1020,Vani Pillai,AI/ML,Data Scientist,"Keras, OpenCV, Pandas, Hugging Face, LLMs, TensorFlow, PyTorch",7.6,Chennai,Placed,Volvo,74.1,December 2026
+ANC1021,Venkat Dasgupta,AI/ML,ML Engineer,"Pandas, Scikit-learn, LLMs",5.0,Gurgaon,Pending,N/A,61.4,December 2026
+ANC1022,Sunil Murthy,AI/ML,AI Research Intern,"LLMs, Pandas, Hugging Face, NLP",4.1,Kolkata,Rejected,N/A,46.3,November 2024
+ANC1023,Divya Pillai,Cloud & DevOps,DevOps Engineer,"Docker, Kubernetes, Terraform, Git, Jenkins",1.1,Ahmedabad,Placed,Infosys,70.9,December 2024
+ANC1024,Rohan Subramanian,Business Consulting,Business Analyst,"Business Analysis, SAP, Stakeholder Management, SQL, Excel, PowerPoint",1.0,Ahmedabad,Placed,Google India,86.8,August 2024
+ANC1025,Satish Shetty,Cloud & DevOps,DevOps Engineer,"Jenkins, Prometheus, Grafana, Ansible, Docker, CI/CD",6.5,Hyderabad,Pending,N/A,45.7,July 2025
+ANC1026,Rahul Trivedi,Business Consulting,Project Manager,"Project Management, Stakeholder Management, Scrum, SAP, Excel, Agile, JIRA, Business Analysis",6.9,Chennai,Rejected,N/A,43.2,August 2024
+ANC1027,Bhavna Nair,Data Analytics,BI Developer,"R, Pandas, Statistics, NumPy",3.5,Kolkata,Placed,HCL,90.8,January 2026
+ANC1028,Rohan Kulkarni,Cybersecurity,Security Analyst,"Firewall, Splunk, Ethical Hacking, Network Security, OWASP",8.5,Chennai,Placed,Deloitte,80.8,April 2024
+ANC1029,Amit Verma,AI/ML,AI Research Intern,"Pandas, NLP, PyTorch, Scikit-learn",1.4,Delhi,Pending,N/A,59.2,February 2026
+ANC1030,Shreya Subramanian,Data Analytics,BI Developer,"NumPy, Excel, SQL, Statistics, Seaborn, Pandas",5.1,Jaipur,Rejected,N/A,47.0,January 2025
+ANC1031,Saranya Rao,Cybersecurity,Penetration Tester,"OWASP, Splunk, Python",5.8,Ahmedabad,Placed,Volvo,92.6,June 2026
+ANC1032,Satish Rajan,AI/ML,AI Research Intern,"LLMs, Statistics, NLP, Hugging Face",1.7,Delhi,Placed,Freshworks,92.4,June 2024
+ANC1033,Vinod Chauhan,Data Analytics,BI Developer,"R, Seaborn, Statistics, NumPy",7.6,Chennai,Placed,Cognizant,69.1,August 2024
+ANC1034,Sunitha Shetty,Cloud & DevOps,DevOps Engineer,"Prometheus, Kubernetes, Jenkins, AWS, Git, Docker, Ansible",3.2,Noida,Pending,N/A,46.4,April 2026
+ANC1035,Shobha Naidu,AI/ML,AI Research Intern,"Python, TensorFlow, NLP, Keras, OpenCV, PyTorch",6.2,Noida,Rejected,N/A,28.5,September 2025
+ANC1036,Kartik Chauhan,AI/ML,AI Research Intern,"LLMs, Pandas, NLP, Deep Learning, Statistics",4.9,Bangalore,Pending,N/A,46.1,December 2026
+ANC1037,Siddharth Tiwari,Business Consulting,Business Analyst,"Stakeholder Management, JIRA, CRM, SAP, ITIL, Excel, PowerPoint, Project Management",2.0,Hyderabad,Placed,Deloitte,86.6,December 2026
+ANC1038,Priya Subramanian,Web Development,Full Stack Developer,"Vue.js, Node.js, JavaScript",0.9,Delhi,Placed,Freshworks,68.7,August 2025
+ANC1039,Saranya Singh,AI/ML,Data Scientist,"NLP, Pandas, TensorFlow",2.0,Gurgaon,Placed,Infosys,88.6,November 2026
+ANC1040,Lakshmi Murthy,Data Analytics,Data Analyst,"Tableau, SQL, Excel, Statistics, NumPy, Data Visualization, R",1.7,Ahmedabad,Pending,N/A,65.7,August 2025
+ANC1041,Swathi Menon,Cloud & DevOps,Solutions Architect,"Ansible, Grafana, AWS, Prometheus, Azure",8.4,Delhi,Pending,N/A,71.2,November 2024
+ANC1042,Mahesh Reddy,Web Development,Frontend Developer,"JavaScript, HTML, Express",1.9,Mumbai,Placed,Zoho,93.5,May 2026
+ANC1043,Vani Iyer,Cloud & DevOps,Solutions Architect,"Git, Docker, Kubernetes",7.4,Noida,Placed,SAP Labs,79.9,April 2026
+ANC1044,Lavanya Dasgupta,Web Development,Full Stack Developer,"HTML, JavaScript, Node.js",7.1,Bangalore,Placed,Oracle,99.0,August 2026
+ANC1045,Satish Chauhan,Cloud & DevOps,Solutions Architect,"Jenkins, Grafana, CI/CD, Git, Azure",3.7,Gurgaon,Rejected,N/A,40.9,May 2024
+ANC1046,Riya Rajan,Data Analytics,Data Analyst,"Seaborn, Python, Tableau, Statistics, Power BI, Excel, Data Visualization",8.2,Ahmedabad,Placed,Zoho,85.6,November 2025
+ANC1047,Vinod Pandey,Data Analytics,BI Developer,"Pandas, Statistics, SQL, Power BI, Data Visualization",3.3,Coimbatore,Pending,N/A,52.4,July 2026
+ANC1048,Sunitha Patel,Data Analytics,BI Developer,"Pandas, SQL, NumPy, Matplotlib, Python",1.2,Mumbai,Placed,Bosch,92.0,September 2025
+ANC1049,Latha Shetty,Cybersecurity,Penetration Tester,"Firewall, Linux, OWASP",5.5,Bangalore,Placed,Accenture,84.4,January 2026
+ANC1050,Amit Bose,Cybersecurity,Security Analyst,"OWASP, Network Security, Metasploit, Vulnerability Assessment, Ethical Hacking",6.2,Bangalore,Rejected,N/A,27.9,November 2024
+ANC1051,Prakash Gupta,AI/ML,AI Research Intern,"NLP, OpenCV, Pandas, Deep Learning, Keras, Statistics, LLMs, TensorFlow",2.8,Chandigarh,Placed,Microsoft,76.2,February 2025
+ANC1052,Balaji Kapoor,AI/ML,Data Scientist,"NLP, Python, LLMs, Deep Learning, Pandas, OpenCV, TensorFlow",8.0,Pune,Placed,Zoho,99.0,September 2026
+ANC1053,Sunitha Reddy,AI/ML,Data Scientist,"LLMs, Keras, Deep Learning, OpenCV",8.0,Pune,Pending,N/A,46.2,December 2025
+ANC1054,Latha Rao,Business Consulting,IT Consultant,"ITIL, Project Management, Stakeholder Management, Excel, Scrum, JIRA, SQL, CRM",3.6,Noida,Pending,N/A,68.4,August 2024
+ANC1055,Yamini Dubey,Business Consulting,Business Analyst,"Project Management, PowerPoint, Stakeholder Management, JIRA, Business Analysis, SAP, CRM, Agile",3.8,Pune,Placed,Infosys,86.0,November 2026
+ANC1056,Satish Rao,AI/ML,AI Research Intern,"Keras, Hugging Face, NLP",0.8,Jaipur,Placed,Deloitte,67.6,November 2026
+ANC1057,Satish Joshi,Data Analytics,BI Developer,"Python, Data Visualization, Pandas, Statistics, Tableau",1.8,Mumbai,Rejected,N/A,32.5,September 2025
+ANC1058,Vinod Rajan,Cybersecurity,SOC Analyst,"SIEM, Ethical Hacking, Cryptography, Vulnerability Assessment",6.8,Chennai,Placed,Oracle,82.4,April 2025
+ANC1059,Padma Trivedi,Business Consulting,IT Consultant,"Excel, Stakeholder Management, JIRA, SAP, Project Management, Scrum, Agile, ITIL",4.2,Kochi,Rejected,N/A,54.6,May 2025
+ANC1060,Krishna Sinha,Cloud & DevOps,Cloud Engineer,"Azure, Docker, Linux, Ansible, Terraform, Kubernetes",8.5,Hyderabad,Placed,Tech Mahindra,69.8,October 2026
+ANC1061,Sanjay Reddy,Business Consulting,Business Analyst,"Stakeholder Management, JIRA, Agile, Business Analysis, CRM, SAP, PowerPoint, ITIL",7.8,Delhi,Placed,HCL,76.2,August 2024
+ANC1062,Nikhil Krishnan,Cybersecurity,Penetration Tester,"Linux, Python, Vulnerability Assessment",6.4,Pune,Pending,N/A,44.1,September 2026
+ANC1063,Lakshmi Mishra,Cloud & DevOps,Cloud Engineer,"Grafana, Kubernetes, Terraform, Azure, CI/CD, Ansible",2.6,Chandigarh,Pending,N/A,42.9,September 2025
+ANC1064,Kavya Pillai,Data Analytics,BI Developer,"SQL, R, Pandas, Tableau, NumPy, Statistics, Seaborn",0.6,Kolkata,Pending,N/A,70.9,January 2026
+ANC1065,Amit Gupta,Cybersecurity,Penetration Tester,"Splunk, Ethical Hacking, Wireshark, Linux",7.8,Hyderabad,Rejected,N/A,42.7,January 2025
+ANC1066,Sanjay Shetty,AI/ML,ML Engineer,"Scikit-learn, OpenCV, Pandas, PyTorch, Hugging Face, NLP, Statistics",1.3,Gurgaon,Placed,Accenture,89.0,July 2025
+ANC1067,Hema Patel,Data Analytics,Data Engineer,"R, Excel, Pandas, SQL, Seaborn, Tableau",3.5,Ahmedabad,Pending,N/A,69.6,May 2024
+ANC1068,Suresh Gupta,Data Analytics,BI Developer,"Statistics, Data Visualization, Seaborn, Python",1.2,Jaipur,Placed,TCS,84.0,October 2024
+ANC1069,Raj Gupta,Data Analytics,Data Engineer,"Excel, Pandas, Power BI, Python",2.2,Noida,Rejected,N/A,29.7,May 2024
+ANC1070,Mohan Patel,Data Analytics,Data Engineer,"Python, Pandas, Excel, Statistics",7.4,Chennai,Placed,Volvo,78.9,December 2025
+ANC1071,Sneha Murthy,Cybersecurity,Security Analyst,"Wireshark, Python, OWASP, Ethical Hacking, Metasploit, Linux",6.5,Delhi,Pending,N/A,45.8,August 2026
+ANC1072,Usha Hegde,Data Analytics,Data Analyst,"NumPy, Statistics, SQL, R, Matplotlib, Python",8.5,Chennai,Pending,N/A,69.5,February 2024
+ANC1073,Amit Venkatesh,Cloud & DevOps,Solutions Architect,"Prometheus, Terraform, Linux, Ansible, Jenkins, Kubernetes, Docker",5.6,Kochi,Pending,N/A,55.7,April 2025
+ANC1074,Divya Naidu,AI/ML,ML Engineer,"OpenCV, LLMs, TensorFlow, PyTorch, Hugging Face, Scikit-learn",3.8,Bangalore,Placed,HCL,88.0,February 2024
+ANC1075,Vani Patel,Data Analytics,BI Developer,"Pandas, Power BI, Matplotlib, Python, Data Visualization, R, Seaborn, Excel",1.3,Delhi,Pending,N/A,50.4,October 2025
+ANC1076,Naveen Venkatesh,Cloud & DevOps,Cloud Engineer,"GCP, Git, CI/CD, Docker",5.1,Pune,Rejected,N/A,49.7,February 2025
+ANC1077,Suma Kapoor,Cybersecurity,Security Analyst,"Cryptography, Metasploit, OWASP, Network Security, Linux, Splunk, Ethical Hacking",7.0,Hyderabad,Placed,HCL,86.6,March 2024
+ANC1078,Varun Dubey,Cybersecurity,SOC Analyst,"Metasploit, Splunk, Network Security, Ethical Hacking",3.7,Ahmedabad,Rejected,N/A,46.1,August 2025
+ANC1079,Vikram Nair,Web Development,Full Stack Developer,"Redux, REST API, Bootstrap, CSS, HTML",3.0,Delhi,Pending,N/A,43.4,August 2026
+ANC1080,Saranya Murthy,AI/ML,Data Scientist,"NLP, Keras, Statistics, TensorFlow, PyTorch, Hugging Face",5.4,Coimbatore,Placed,Wipro,84.3,May 2024
+ANC1081,Bhavna Pandey,Web Development,Full Stack Developer,"HTML, React, Node.js",8.4,Pune,Placed,IBM,76.7,February 2024
+ANC1082,Meera Mishra,AI/ML,AI Research Intern,"OpenCV, Statistics, Keras, Hugging Face",3.9,Chandigarh,Placed,Bosch,87.1,December 2024
+ANC1083,Ravi Pandey,AI/ML,ML Engineer,"PyTorch, Deep Learning, OpenCV",4.2,Bangalore,Pending,N/A,58.1,July 2024
+ANC1084,Ramesh Nair,Cloud & DevOps,Cloud Engineer,"CI/CD, Prometheus, Terraform, Azure, Linux, Ansible, Grafana",6.9,Ahmedabad,Placed,Google India,92.5,May 2026
+ANC1085,Kartik Kapoor,Cloud & DevOps,Cloud Engineer,"Azure, Jenkins, Git, Grafana",3.2,Pune,Pending,N/A,56.6,December 2026
+ANC1086,Vinod Bose,Web Development,Frontend Developer,"React, JavaScript, REST API, Bootstrap, CSS",1.3,Jaipur,Rejected,N/A,26.2,October 2026
+ANC1087,Latha Tiwari,AI/ML,AI Research Intern,"Hugging Face, LLMs, Deep Learning, PyTorch, Statistics, TensorFlow, Keras",7.9,Jaipur,Placed,Infosys,98.3,May 2026
+ANC1088,Deepika Kulkarni,Data Analytics,BI Developer,"R, Data Visualization, Python, Seaborn, Pandas",4.6,Gurgaon,Placed,Tech Mahindra,69.7,September 2025
+ANC1089,Dinesh Rao,AI/ML,AI Research Intern,"Python, Pandas, Deep Learning, Keras, PyTorch, NLP, Statistics, OpenCV",4.9,Jaipur,Placed,Accenture,68.9,June 2026
+ANC1090,Aditya Saxena,Data Analytics,Data Engineer,"Excel, R, Statistics",5.7,Pune,Pending,N/A,56.3,May 2025
+ANC1091,Sanjay Venkatesh,AI/ML,Data Scientist,"Hugging Face, LLMs, PyTorch",5.9,Coimbatore,Pending,N/A,40.3,July 2025
+ANC1092,Krishna Gupta,Cloud & DevOps,Solutions Architect,"GCP, Terraform, Azure, Ansible, Grafana, Prometheus, Jenkins",7.3,Gurgaon,Pending,N/A,71.9,December 2024
+ANC1093,Rajesh Sharma,Cloud & DevOps,Solutions Architect,"GCP, Git, Prometheus, Jenkins, Azure",3.5,Pune,Placed,Google India,96.8,May 2024
+ANC1094,Srinivas Murthy,Web Development,Full Stack Developer,"React, Redux, JavaScript, Git, CSS, Node.js",8.1,Hyderabad,Placed,Wipro,99.0,November 2025
+ANC1095,Sneha Shukla,Cybersecurity,Security Analyst,"SIEM, Metasploit, Cryptography, Splunk",5.3,Pune,Pending,N/A,63.2,November 2026
+ANC1096,Latha Bose,Web Development,Full Stack Developer,"Redux, TypeScript, React, Vue.js, Git, Node.js, Express, REST API",5.4,Jaipur,Placed,IBM,89.3,May 2025
+ANC1097,Shobha Venkatesh,Cybersecurity,SOC Analyst,"Firewall, Cryptography, SIEM, Linux",3.8,Bangalore,Placed,TCS,95.0,December 2026
+ANC1098,Lakshmi Dasgupta,Data Analytics,BI Developer,"Tableau, R, Matplotlib, Power BI",1.2,Pune,Placed,Google India,68.0,January 2025
+ANC1099,Sanjay Malhotra,Data Analytics,BI Developer,"NumPy, SQL, Pandas, Excel",4.5,Jaipur,Rejected,N/A,21.0,March 2024
+ANC1100,Varun Joshi,Data Analytics,BI Developer,"Data Visualization, Power BI, R, Seaborn, Python, Matplotlib",7.8,Noida,Rejected,N/A,20.7,December 2026
+ANC1101,Arjun Iyer,Cybersecurity,Penetration Tester,"Firewall, Linux, Ethical Hacking, Network Security, Metasploit",1.4,Chandigarh,Placed,Google India,92.1,August 2026
+ANC1102,Ravi Mehta,Cybersecurity,Security Analyst,"Firewall, SIEM, Linux, Vulnerability Assessment, Network Security, Cryptography, Splunk",5.6,Coimbatore,Pending,N/A,46.4,November 2024
+ANC1103,Sudha Saxena,Cybersecurity,Penetration Tester,"OWASP, Metasploit, Splunk, Cryptography, Network Security, Firewall, Vulnerability Assessment",1.0,Delhi,Rejected,N/A,21.5,December 2024
+ANC1104,Siddharth Bose,Cloud & DevOps,Cloud Engineer,"Git, Grafana, Azure, Ansible, Terraform, GCP, AWS, CI/CD",3.3,Kochi,Rejected,N/A,39.1,August 2026
+ANC1105,Ganesh Chatterjee,Web Development,Frontend Developer,"HTML, Node.js, React, Redux, Git, REST API",1.0,Ahmedabad,Rejected,N/A,31.0,September 2025
+ANC1106,Shobha Trivedi,Cloud & DevOps,Cloud Engineer,"Kubernetes, Terraform, AWS, Prometheus",6.5,Ahmedabad,Placed,HCL,74.2,December 2025
+ANC1107,Vani Nair,AI/ML,Data Scientist,"LLMs, Pandas, PyTorch, Statistics, NLP, OpenCV",8.3,Ahmedabad,Pending,N/A,40.9,October 2024
+ANC1108,Vani Verma,Cybersecurity,Penetration Tester,"Python, Splunk, Linux",3.1,Kochi,Pending,N/A,48.7,August 2025
+ANC1109,Prakash Verma,AI/ML,ML Engineer,"Deep Learning, OpenCV, NLP, Python, TensorFlow",6.3,Hyderabad,Placed,Microsoft,90.0,March 2026
+ANC1110,Kiran Hegde,Business Consulting,IT Consultant,"Agile, ITIL, Business Analysis",0.8,Chennai,Placed,Amazon,86.6,November 2025
+ANC1111,Venkat Sinha,Cloud & DevOps,DevOps Engineer,"Ansible, GCP, Jenkins",4.1,Mumbai,Rejected,N/A,32.8,February 2024
+ANC1112,Lavanya Shetty,Business Consulting,Business Analyst,"SAP, PowerPoint, JIRA, CRM, Stakeholder Management, ITIL",4.5,Mumbai,Pending,N/A,72.9,February 2024
+ANC1113,Siddharth Saxena,Data Analytics,BI Developer,"R, SQL, Pandas, Seaborn, Statistics, Tableau, NumPy, Power BI",1.9,Noida,Placed,Tech Mahindra,73.5,April 2024
+ANC1114,Nikhil Kulkarni,Web Development,Frontend Developer,"HTML, MongoDB, Vue.js, REST API, Bootstrap, TypeScript",2.4,Bangalore,Rejected,N/A,48.1,February 2025
+ANC1115,Ashok Murthy,AI/ML,AI Research Intern,"OpenCV, LLMs, Deep Learning, TensorFlow, Scikit-learn, Pandas, PyTorch",6.3,Pune,Rejected,N/A,22.6,March 2026
+ANC1116,Padma Verma,Business Consulting,Project Manager,"SQL, SAP, Excel, PowerPoint",2.0,Chennai,Rejected,N/A,38.1,June 2026
+ANC1117,Yamini Nair,Web Development,Full Stack Developer,"Node.js, CSS, Redux, React, Vue.js, Git, Bootstrap",8.1,Noida,Rejected,N/A,41.9,November 2024
+ANC1118,Swathi Subramanian,Cybersecurity,SOC Analyst,"Cryptography, Metasploit, Python, Network Security, OWASP, Wireshark, Vulnerability Assessment, Linux",1.7,Ahmedabad,Pending,N/A,47.3,October 2026
+ANC1119,Revathi Singh,Data Analytics,BI Developer,"Tableau, Statistics, Data Visualization, R, Excel, NumPy, Pandas",7.6,Kochi,Placed,Microsoft,87.1,January 2024
+ANC1120,Venkat Kapoor,AI/ML,Data Scientist,"PyTorch, Deep Learning, Scikit-learn, LLMs",4.4,Ahmedabad,Pending,N/A,68.2,March 2025
+ANC1121,Sanjay Patel,Cybersecurity,SOC Analyst,"Wireshark, Ethical Hacking, Linux, Metasploit",1.3,Delhi,Placed,Deloitte,72.0,July 2026
+ANC1122,Vinod Chatterjee,AI/ML,ML Engineer,"PyTorch, Deep Learning, LLMs, Keras",8.2,Kolkata,Rejected,N/A,46.7,August 2025
+ANC1123,Vinod Hegde,AI/ML,ML Engineer,"Statistics, Pandas, Keras, Deep Learning, PyTorch, Python",1.2,Chandigarh,Pending,N/A,39.8,November 2026
+ANC1124,Manoj Saxena,AI/ML,Data Scientist,"OpenCV, Scikit-learn, NLP",4.8,Hyderabad,Pending,N/A,63.5,July 2024
+ANC1125,Shreya Gupta,Cybersecurity,SOC Analyst,"Linux, Ethical Hacking, Vulnerability Assessment, OWASP, Wireshark, Cryptography, Metasploit",2.1,Bangalore,Pending,N/A,47.8,July 2025
+ANC1126,Sneha Reddy,Cloud & DevOps,Solutions Architect,"Docker, Ansible, Jenkins, Linux",8.0,Chennai,Placed,Swiggy,70.4,December 2025
+ANC1127,Padma Rajan,AI/ML,AI Research Intern,"Statistics, Scikit-learn, PyTorch, Deep Learning, Hugging Face, Keras, NLP",4.2,Pune,Pending,N/A,63.9,September 2026
+ANC1128,Ganesh Sharma,Cybersecurity,Penetration Tester,"Wireshark, Network Security, Python, Cryptography, Ethical Hacking",6.2,Gurgaon,Rejected,N/A,54.3,August 2025
+ANC1129,Amit Shah,Business Consulting,Project Manager,"Excel, CRM, Stakeholder Management, Project Management, SQL, PowerPoint, Business Analysis, ITIL",5.1,Hyderabad,Pending,N/A,39.1,August 2025
+ANC1130,Pooja Gupta,AI/ML,ML Engineer,"OpenCV, Statistics, Deep Learning, Pandas",3.8,Noida,Pending,N/A,68.5,April 2026
+ANC1131,Kartik Bhat,Cloud & DevOps,Solutions Architect,"Terraform, GCP, CI/CD, Jenkins, Grafana, Ansible",4.3,Delhi,Placed,HCL,95.4,September 2025
+ANC1132,Srinivas Dubey,Web Development,Full Stack Developer,"React, Bootstrap, TypeScript, MongoDB, Git, REST API, Node.js, Vue.js",6.7,Ahmedabad,Pending,N/A,47.6,June 2024
+ANC1133,Geeta Gupta,Cloud & DevOps,Cloud Engineer,"Azure, Terraform, CI/CD, Kubernetes, Git, Docker, Grafana, Ansible",2.8,Bangalore,Placed,HCL,99.0,October 2026
+ANC1134,Tanvi Kumar,Cybersecurity,Security Analyst,"OWASP, Firewall, Splunk, Network Security, Ethical Hacking, Cryptography, SIEM, Vulnerability Assessment",2.4,Noida,Rejected,N/A,23.5,March 2025
+ANC1135,Deepika Subramanian,Business Consulting,IT Consultant,"JIRA, Business Analysis, Scrum, Excel",4.3,Mumbai,Pending,N/A,69.8,September 2026
+ANC1136,Priya Tiwari,Business Consulting,Business Analyst,"SQL, Project Management, Excel, Scrum",7.8,Gurgaon,Placed,Freshworks,79.2,October 2024
+ANC1137,Prasad Verma,Cloud & DevOps,DevOps Engineer,"Jenkins, Grafana, CI/CD, GCP, Prometheus, Git, Ansible, Azure",4.1,Kochi,Pending,N/A,66.3,August 2026
+ANC1138,Deepika Mishra,Cloud & DevOps,Solutions Architect,"Terraform, Kubernetes, Ansible, Docker, GCP, Linux, CI/CD, Git",2.0,Coimbatore,Placed,Swiggy,83.6,February 2024
+ANC1139,Geeta Malhotra,Web Development,Full Stack Developer,"HTML, Node.js, Express, React",3.1,Delhi,Pending,N/A,53.6,October 2026
+ANC1140,Manoj Chatterjee,Cybersecurity,Security Analyst,"Metasploit, Firewall, Network Security, Ethical Hacking, Wireshark",2.6,Kochi,Pending,N/A,48.7,May 2026
+ANC1141,Revathi Hegde,Data Analytics,Data Engineer,"Pandas, Seaborn, Excel, Statistics, Power BI",7.8,Pune,Pending,N/A,54.7,July 2026
+ANC1142,Amit Patel,Cybersecurity,Penetration Tester,"Firewall, Metasploit, Cryptography, Ethical Hacking, Wireshark, Linux, Python, SIEM",6.6,Chandigarh,Placed,Infosys,99.0,September 2026
+ANC1143,Deepika Chatterjee,Web Development,Backend Developer,"MongoDB, Vue.js, TypeScript, CSS",4.8,Kolkata,Placed,IBM,96.8,January 2025
+ANC1144,Varun Rajan,Web Development,Backend Developer,"HTML, Vue.js, TypeScript, Node.js, Redux, Express, JavaScript",3.8,Bangalore,Pending,N/A,66.6,January 2025
+ANC1145,Riya Gupta,Cloud & DevOps,Solutions Architect,"Azure, CI/CD, AWS",1.0,Jaipur,Placed,Tech Mahindra,88.8,November 2026
+ANC1146,Siddharth Krishnan,Business Consulting,IT Consultant,"Stakeholder Management, SQL, ITIL, PowerPoint, Project Management, Business Analysis",3.5,Ahmedabad,Placed,Amazon,71.8,September 2024
+ANC1147,Vijay Pillai,Business Consulting,Business Analyst,"JIRA, Stakeholder Management, SAP",7.2,Mumbai,Rejected,N/A,34.8,August 2025
+ANC1148,Kiran Dasgupta,Web Development,Full Stack Developer,"Redux, CSS, HTML, Express, Git, React, Bootstrap, Vue.js",2.0,Gurgaon,Pending,N/A,41.5,November 2026
+ANC1149,Harish Subramanian,Data Analytics,Data Analyst,"R, Excel, Matplotlib, Statistics, Python, SQL",6.4,Pune,Placed,Swiggy,85.1,October 2026
+ANC1150,Pooja Venkatesh,Business Consulting,IT Consultant,"ITIL, SAP, Agile, SQL",2.4,Gurgaon,Placed,Tech Mahindra,80.9,December 2024
+ANC1151,Divya Tiwari,Business Consulting,Project Manager,"Excel, Business Analysis, SQL, SAP, ITIL, Stakeholder Management",3.9,Ahmedabad,Rejected,N/A,34.6,March 2026
+ANC1152,Ramesh Gupta,AI/ML,ML Engineer,"LLMs, Scikit-learn, Pandas, Python, OpenCV",7.3,Ahmedabad,Pending,N/A,71.9,April 2025
+ANC1153,Meera Shah,Web Development,Full Stack Developer,"MongoDB, CSS, Vue.js, React, HTML, Node.js",5.7,Jaipur,Placed,Microsoft,68.6,October 2026
+ANC1154,Shreya Naidu,Business Consulting,Project Manager,"Business Analysis, JIRA, Excel, Agile",2.2,Mumbai,Pending,N/A,70.8,December 2026
+ANC1155,Hema Tiwari,Business Consulting,Business Analyst,"SAP, Business Analysis, JIRA, SQL",3.7,Delhi,Placed,Zoho,99.0,June 2026
+ANC1156,Raj Sharma,AI/ML,Data Scientist,"Pandas, PyTorch, Keras, Hugging Face, Statistics, Deep Learning, Python, NLP",1.3,Delhi,Pending,N/A,68.2,September 2026
+ANC1157,Suresh Shetty,Cybersecurity,SOC Analyst,"Firewall, Python, Metasploit, Vulnerability Assessment",3.8,Noida,Rejected,N/A,39.9,November 2026
+ANC1158,Srinivas Shetty,Cloud & DevOps,DevOps Engineer,"Prometheus, Git, CI/CD, Grafana, GCP, Terraform",6.6,Chennai,Pending,N/A,43.9,September 2026
+ANC1159,Harish Singh,Data Analytics,Data Engineer,"Statistics, Python, Data Visualization",0.8,Kochi,Placed,Google India,70.6,March 2024
+ANC1160,Balaji Shetty,Web Development,Backend Developer,"REST API, Git, Bootstrap",4.1,Hyderabad,Pending,N/A,70.7,January 2026
+ANC1161,Kavya Rao,Cybersecurity,Penetration Tester,"Metasploit, Linux, OWASP, Splunk, Network Security, Cryptography, Python",0.6,Noida,Placed,Google India,73.5,March 2024
+ANC1162,Suresh Pillai,Web Development,Backend Developer,"Node.js, Express, CSS, MongoDB, Bootstrap",4.7,Delhi,Placed,Zoho,99.0,November 2024
+ANC1163,Pooja Kumar,Business Consulting,Project Manager,"SQL, Scrum, ITIL",6.6,Kochi,Placed,Bosch,97.3,March 2024
+ANC1164,Chitra Sinha,AI/ML,Data Scientist,"Deep Learning, TensorFlow, Statistics, Python, Keras",5.7,Hyderabad,Placed,IBM,99.0,February 2026
+ANC1165,Krishna Singh,Cloud & DevOps,Solutions Architect,"GCP, Terraform, AWS",5.0,Delhi,Placed,IBM,75.0,March 2026
+ANC1166,Vikram Rao,Web Development,Backend Developer,"Git, Vue.js, MongoDB, Express, JavaScript, CSS",7.2,Ahmedabad,Placed,Swiggy,89.8,April 2024
+ANC1167,Vijay Trivedi,Cloud & DevOps,Solutions Architect,"Linux, Terraform, AWS, Kubernetes, CI/CD, Jenkins, Azure",6.7,Chennai,Placed,Amazon,99.0,November 2026
+ANC1168,Divya Dubey,Business Consulting,IT Consultant,"JIRA, Agile, PowerPoint, CRM, Scrum, SAP, ITIL",1.2,Pune,Pending,N/A,62.9,June 2024
+ANC1169,Prakash Shukla,Data Analytics,Data Analyst,"Pandas, Tableau, SQL, Power BI, Seaborn, R",8.0,Bangalore,Placed,Google India,96.4,January 2024
+ANC1170,Suresh Subramanian,Cloud & DevOps,Solutions Architect,"Grafana, Terraform, Linux, AWS, Kubernetes, Git, Docker",1.2,Noida,Pending,N/A,65.3,March 2026
+ANC1171,Ravi Tiwari,AI/ML,ML Engineer,"NLP, Pandas, Scikit-learn, TensorFlow, Deep Learning",1.6,Kolkata,Pending,N/A,53.2,February 2025
+ANC1172,Krishna Malhotra,Cloud & DevOps,Cloud Engineer,"Ansible, Grafana, Docker, CI/CD, Azure, GCP",6.3,Chandigarh,Placed,Tech Mahindra,67.0,October 2025
+ANC1173,Venkat Pandey,Cloud & DevOps,DevOps Engineer,"Ansible, GCP, Kubernetes, Terraform, Docker, CI/CD, Prometheus, Azure",3.2,Kochi,Rejected,N/A,53.8,December 2026
+ANC1174,Dev Rajan,AI/ML,AI Research Intern,"OpenCV, NLP, LLMs, PyTorch, TensorFlow",6.8,Noida,Pending,N/A,70.6,March 2026
+ANC1175,Tanvi Tiwari,Cybersecurity,Security Analyst,"Metasploit, Firewall, Wireshark, Linux, Ethical Hacking, Vulnerability Assessment",8.1,Mumbai,Placed,Google India,99.0,May 2026
+ANC1176,Rajesh Krishnan,Web Development,Backend Developer,"CSS, TypeScript, REST API, Bootstrap, Express, Vue.js",3.9,Gurgaon,Placed,Bosch,67.1,November 2024
+ANC1177,Prasad Trivedi,Data Analytics,Data Analyst,"Power BI, Statistics, Seaborn, Python, NumPy",5.8,Bangalore,Pending,N/A,71.8,January 2024
+ANC1178,Malathi Joshi,Cloud & DevOps,Cloud Engineer,"Jenkins, Ansible, Prometheus, Docker, CI/CD, Terraform, Git",4.6,Pune,Pending,N/A,54.2,January 2025
+ANC1179,Revathi Menon,Data Analytics,BI Developer,"SQL, Power BI, Pandas",3.8,Noida,Placed,Tech Mahindra,86.0,August 2025
+ANC1180,Kavya Verma,AI/ML,ML Engineer,"Pandas, PyTorch, TensorFlow, NLP, Python, OpenCV, Hugging Face, LLMs",4.0,Kochi,Placed,Volvo,86.2,April 2026
+ANC1181,Krishna Sharma,Web Development,Backend Developer,"Express, TypeScript, React, Redux, JavaScript, Vue.js, MongoDB",1.8,Kochi,Pending,N/A,61.0,October 2024
+ANC1182,Kavya Krishnan,AI/ML,AI Research Intern,"LLMs, Keras, Hugging Face",3.9,Chennai,Placed,HCL,69.1,June 2025
+ANC1183,Revathi Kulkarni,Web Development,Full Stack Developer,"TypeScript, Vue.js, Git, MongoDB, Express, Bootstrap, Node.js, HTML",1.4,Chennai,Pending,N/A,50.2,November 2026
+ANC1184,Prakash Dubey,Cloud & DevOps,Solutions Architect,"GCP, Terraform, Azure, Docker, Kubernetes, Git, CI/CD, Grafana",5.2,Ahmedabad,Pending,N/A,62.3,October 2024
+ANC1185,Riya Chauhan,Cybersecurity,Penetration Tester,"Splunk, OWASP, SIEM, Metasploit, Cryptography, Firewall",3.9,Chandigarh,Placed,Tech Mahindra,73.1,August 2026
+ANC1186,Ravi Dasgupta,Data Analytics,BI Developer,"Power BI, Excel, NumPy, Matplotlib, R, Statistics",8.1,Kolkata,Pending,N/A,62.0,March 2024
+ANC1187,Nisha Bose,Cybersecurity,Security Analyst,"Linux, Network Security, Metasploit, Firewall",6.9,Gurgaon,Placed,Bosch,85.5,December 2025
+ANC1188,Latha Krishnan,Cybersecurity,SOC Analyst,"Linux, OWASP, Python",1.4,Mumbai,Placed,Bosch,65.1,July 2024
+ANC1189,Anjali Menon,Business Consulting,Project Manager,"Excel, Stakeholder Management, JIRA, Business Analysis, PowerPoint",6.5,Jaipur,Placed,Zoho,74.2,December 2026
+ANC1190,Naveen Krishnan,Business Consulting,IT Consultant,"ITIL, SQL, Project Management, CRM, Agile, Scrum, PowerPoint",7.4,Delhi,Pending,N/A,66.2,October 2026
+ANC1191,Pooja Sinha,Web Development,Full Stack Developer,"Node.js, REST API, Redux, Vue.js, CSS",8.3,Chandigarh,Placed,Accenture,94.6,November 2024
+ANC1192,Vijay Dasgupta,Business Consulting,Business Analyst,"Business Analysis, Agile, SQL, Stakeholder Management, Project Management, JIRA, Scrum, SAP",2.5,Bangalore,Pending,N/A,60.0,November 2024
+ANC1193,Arjun Krishnan,AI/ML,AI Research Intern,"PyTorch, Pandas, Hugging Face, LLMs, Python, OpenCV, Statistics, Deep Learning",6.5,Ahmedabad,Placed,Zoho,89.2,April 2025
+ANC1194,Sneha Rao,Web Development,Full Stack Developer,"MongoDB, Vue.js, REST API, JavaScript, TypeScript",2.6,Coimbatore,Placed,Cognizant,67.1,August 2024
+ANC1195,Sunil Nair,Data Analytics,Data Analyst,"NumPy, Excel, Power BI",4.0,Coimbatore,Rejected,N/A,50.9,June 2025
+ANC1196,Varun Naidu,Data Analytics,BI Developer,"Power BI, Python, NumPy, Tableau, Excel, R, Pandas, Statistics",5.8,Bangalore,Placed,Wipro,66.6,March 2026
+ANC1197,Nikhil Naidu,Web Development,Backend Developer,"HTML, Bootstrap, MongoDB",5.9,Bangalore,Placed,Wipro,93.7,April 2025
+ANC1198,Tanvi Joshi,Data Analytics,Data Engineer,"Pandas, Data Visualization, Tableau",6.9,Bangalore,Placed,Accenture,91.5,September 2026
+ANC1199,Sanjay Gupta,Data Analytics,Data Engineer,"Pandas, Excel, Power BI, NumPy, R, Matplotlib",5.7,Jaipur,Placed,IBM,71.6,February 2026
+ANC1200,Lavanya Sharma,Business Consulting,IT Consultant,"Business Analysis, Project Management, Agile, JIRA, PowerPoint, Stakeholder Management",3.3,Chandigarh,Rejected,N/A,39.4,November 2025
+ANC1201,Anjali Shetty,Web Development,Backend Developer,"Bootstrap, Express, Node.js, HTML",5.4,Ahmedabad,Rejected,N/A,47.4,February 2024
+ANC1202,Srinivas Mehta,AI/ML,AI Research Intern,"Python, PyTorch, Hugging Face, Scikit-learn, OpenCV, Pandas, NLP",5.3,Jaipur,Placed,Google India,89.2,August 2024
+ANC1203,Malathi Shukla,Data Analytics,Data Engineer,"Excel, Python, Statistics, NumPy, Tableau",1.0,Ahmedabad,Pending,N/A,60.0,December 2025
+ANC1204,Divya Krishnan,Data Analytics,Data Engineer,"Power BI, Tableau, SQL, Statistics, Seaborn, Matplotlib, R",4.8,Pune,Rejected,N/A,54.1,July 2026
+ANC1205,Deepika Trivedi,Business Consulting,Project Manager,"JIRA, SQL, Agile",5.9,Bangalore,Placed,TCS,81.7,August 2026
+ANC1206,Naveen Murthy,Cybersecurity,Security Analyst,"Splunk, SIEM, Ethical Hacking, Network Security, Metasploit, Python, OWASP, Cryptography",3.0,Noida,Rejected,N/A,37.4,December 2025
+ANC1207,Arjun Agarwal,Web Development,Full Stack Developer,"Bootstrap, CSS, HTML, MongoDB, Express",1.5,Kochi,Placed,HCL,96.2,October 2026
+ANC1208,Kavya Subramanian,Data Analytics,BI Developer,"Python, R, Seaborn, Power BI, Pandas",4.1,Coimbatore,Rejected,N/A,25.5,December 2024
+ANC1209,Sudha Joshi,Web Development,Backend Developer,"HTML, React, Redux",4.6,Chennai,Pending,N/A,54.5,January 2026
+ANC1210,Shobha Iyer,Business Consulting,Project Manager,"Business Analysis, Agile, SQL, Scrum",5.7,Noida,Placed,HCL,70.6,November 2024
+ANC1211,Ganesh Chauhan,Web Development,Frontend Developer,"Express, CSS, TypeScript",6.9,Bangalore,Pending,N/A,68.3,September 2025
+ANC1212,Dev Krishnan,Data Analytics,BI Developer,"Tableau, Seaborn, Excel, R, Pandas, Data Visualization, Statistics",2.1,Jaipur,Pending,N/A,72.9,April 2024
+ANC1213,Kavya Menon,Data Analytics,BI Developer,"Pandas, Statistics, Python, Data Visualization, Seaborn, NumPy, Matplotlib",0.7,Noida,Placed,Microsoft,81.6,April 2025
+ANC1214,Geetha Shukla,AI/ML,ML Engineer,"LLMs, NLP, TensorFlow, Python",8.3,Kochi,Pending,N/A,70.2,June 2025
+ANC1215,Mahesh Agarwal,Business Consulting,Business Analyst,"Project Management, ITIL, SQL, PowerPoint, Excel, Agile, Business Analysis",5.1,Chandigarh,Placed,Accenture,81.1,June 2025
+ANC1216,Kavya Joshi,Business Consulting,Project Manager,"JIRA, Agile, PowerPoint, ITIL, Project Management, SQL",3.1,Bangalore,Pending,N/A,65.0,March 2025
+ANC1217,Padma Hegde,AI/ML,Data Scientist,"PyTorch, Keras, Pandas, NLP, Deep Learning, Scikit-learn, Python",3.8,Hyderabad,Placed,Infosys,75.0,April 2025
+ANC1218,Manoj Dasgupta,Web Development,Frontend Developer,"Express, Vue.js, HTML, Node.js, REST API",6.2,Noida,Placed,Capgemini,68.0,December 2026
+ANC1219,Rahul Rajan,Web Development,Frontend Developer,"CSS, HTML, Bootstrap, React",4.2,Gurgaon,Placed,Accenture,77.4,May 2024
+ANC1220,Satish Mishra,Data Analytics,Data Analyst,"R, Power BI, SQL, Pandas, Seaborn, Python, Excel, NumPy",2.1,Kolkata,Rejected,N/A,25.9,January 2025
+ANC1221,Kiran Kulkarni,Business Consulting,IT Consultant,"Project Management, JIRA, ITIL, Stakeholder Management",1.9,Gurgaon,Pending,N/A,68.9,October 2024
+ANC1222,Ramesh Bhat,Business Consulting,IT Consultant,"Stakeholder Management, Excel, PowerPoint, JIRA, SQL, CRM, Agile",4.5,Coimbatore,Pending,N/A,45.0,September 2024
+ANC1223,Venkat Hegde,AI/ML,AI Research Intern,"Pandas, PyTorch, Deep Learning, Statistics, Hugging Face, Keras, Scikit-learn",3.4,Mumbai,Pending,N/A,44.3,January 2025
+ANC1224,Sudha Kapoor,Data Analytics,BI Developer,"Excel, Power BI, SQL, Data Visualization, Matplotlib, Statistics, Tableau",4.7,Chandigarh,Placed,TCS,79.8,March 2024
+ANC1225,Vinod Krishnan,Web Development,Backend Developer,"Bootstrap, MongoDB, REST API, HTML, Redux, JavaScript, Node.js, CSS",3.0,Delhi,Pending,N/A,67.3,March 2025
+ANC1226,Nikhil Malhotra,Data Analytics,Data Analyst,"Excel, Python, Matplotlib, R, Statistics, Power BI, Tableau",0.9,Kochi,Rejected,N/A,27.1,March 2025
+ANC1227,Suma Tiwari,Data Analytics,Data Analyst,"Power BI, SQL, Matplotlib, Pandas, Statistics, Data Visualization, Seaborn, Excel",1.7,Pune,Pending,N/A,58.5,March 2024
+ANC1228,Siddharth Dubey,Business Consulting,IT Consultant,"ITIL, Business Analysis, Project Management, SAP, Scrum, PowerPoint",6.8,Delhi,Pending,N/A,61.3,December 2026
+ANC1229,Riya Hegde,Cloud & DevOps,Cloud Engineer,"Prometheus, Ansible, Linux",1.9,Pune,Placed,SAP Labs,65.5,October 2024
+ANC1230,Prasad Dasgupta,Business Consulting,Project Manager,"Project Management, Business Analysis, PowerPoint, Agile, ITIL, Scrum",1.3,Hyderabad,Placed,Capgemini,68.0,May 2024
+ANC1231,Nisha Shukla,Web Development,Backend Developer,"Redux, CSS, HTML, Git, Express",1.0,Kolkata,Placed,Zoho,88.8,July 2025
+ANC1232,Rohan Chauhan,Cybersecurity,Penetration Tester,"Cryptography, Splunk, Firewall, SIEM, Wireshark, Network Security",1.3,Delhi,Placed,TCS,81.0,February 2024
+ANC1233,Ananya Trivedi,Cloud & DevOps,Cloud Engineer,"Prometheus, Azure, Jenkins, Grafana",7.6,Coimbatore,Placed,Cognizant,98.1,March 2026
+ANC1234,Anjali Rao,AI/ML,ML Engineer,"Keras, LLMs, OpenCV, Statistics, NLP",0.9,Hyderabad,Placed,Tech Mahindra,81.7,July 2026
+ANC1235,Ananya Menon,Cybersecurity,Penetration Tester,"Network Security, Vulnerability Assessment, Ethical Hacking, Linux, Wireshark",1.7,Chennai,Pending,N/A,45.0,November 2025
+ANC1236,Riya Saxena,Data Analytics,BI Developer,"NumPy, R, Statistics, Tableau, SQL",7.3,Ahmedabad,Placed,Bosch,91.8,June 2024
+ANC1237,Sanjay Nair,AI/ML,ML Engineer,"NLP, Keras, LLMs, Python, Scikit-learn, OpenCV",2.6,Coimbatore,Pending,N/A,62.4,June 2026
+ANC1238,Chitra Subramanian,AI/ML,AI Research Intern,"OpenCV, Statistics, LLMs",2.3,Mumbai,Rejected,N/A,53.8,August 2025
+ANC1239,Nisha Menon,Data Analytics,BI Developer,"Python, Matplotlib, Seaborn, Statistics, Power BI, Data Visualization, Excel, SQL",7.7,Jaipur,Rejected,N/A,53.2,April 2024
+ANC1240,Krishna Venkatesh,Data Analytics,BI Developer,"NumPy, Excel, Power BI, Tableau, Pandas, R, Python, Data Visualization",1.1,Pune,Pending,N/A,51.6,May 2026
+ANC1241,Sanjay Pandey,AI/ML,ML Engineer,"Deep Learning, Statistics, OpenCV, TensorFlow, LLMs, Hugging Face, Pandas",6.8,Chandigarh,Placed,SAP Labs,73.4,September 2025
+ANC1242,Manoj Reddy,AI/ML,Data Scientist,"Deep Learning, LLMs, Pandas, Python, Scikit-learn, Hugging Face",3.6,Ahmedabad,Pending,N/A,52.1,June 2026
+ANC1243,Sanjay Pillai,Web Development,Frontend Developer,"MongoDB, HTML, Redux, Node.js, REST API",6.5,Chennai,Placed,HCL,98.2,May 2026
+ANC1244,Geetha Saxena,AI/ML,Data Scientist,"Deep Learning, Hugging Face, TensorFlow, Keras, Pandas, LLMs",2.7,Chandigarh,Placed,Google India,95.2,January 2026
+ANC1245,Suresh Reddy,Web Development,Frontend Developer,"Express, JavaScript, Vue.js, REST API, HTML, Bootstrap, CSS",3.0,Kolkata,Placed,IBM,67.4,January 2025
+ANC1246,Siddharth Naidu,Business Consulting,Business Analyst,"SAP, SQL, PowerPoint, Excel, Agile, Project Management",2.7,Gurgaon,Placed,Freshworks,92.2,September 2025
+ANC1247,Aditya Subramanian,Cloud & DevOps,Cloud Engineer,"Prometheus, Grafana, Azure, Kubernetes, AWS",7.2,Jaipur,Pending,N/A,51.5,April 2024
+ANC1248,Siddharth Hegde,Business Consulting,Business Analyst,"ITIL, SQL, SAP, Excel, CRM",5.9,Jaipur,Placed,Freshworks,74.7,January 2024
+ANC1249,Revathi Agarwal,Cloud & DevOps,Solutions Architect,"Prometheus, Grafana, Git, Kubernetes, Linux",6.9,Mumbai,Placed,Microsoft,89.5,August 2025
+ANC1250,Lavanya Tiwari,Business Consulting,Project Manager,"CRM, PowerPoint, Excel, SAP, Business Analysis, JIRA",7.1,Coimbatore,Pending,N/A,60.7,February 2025
