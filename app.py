@@ -33,6 +33,13 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+st.markdown("""
+<style>
+button[kind="header"] {
+    display:block !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
 st.markdown("""
@@ -40,7 +47,7 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 * { font-family: 'Inter', sans-serif !important; }
 
-#MainMenu, footer, header { visibility: hidden; }
+#MainMenu,  footer { visibility: hidden; }
 .block-container { padding-top: 1rem !important; padding-bottom: 2rem; }
 
 /* ── Sidebar ── */
@@ -590,17 +597,37 @@ elif page == "Dataset Explorer":
             search = st.text_input("Search by name, skill, role, or location",
                                    placeholder="e.g. Python, Bangalore, Data Analyst...")
         with col_sort:
-            sort_col = st.selectbox("Sort by", ["Match_Score","Experience_Years","Name","Domain","Status"])
+            sort_col = st.selectbox(
+                "Sort by",
+                [
+                    "Candidate_ID",
+                    "Match_Score",
+                    "Experience_Years",
+                    "Name",
+                    "Domain",
+                    "Status"
+                ]
+            )
 
-        df_view = df.copy()
-        if search.strip():
-            q = search.strip().lower()
-            mask = (df_view["Name"].str.lower().str.contains(q, na=False) |
-                    df_view["Skills"].str.lower().str.contains(q, na=False) |
-                    df_view["Role"].str.lower().str.contains(q, na=False) |
-                    df_view["Location"].str.lower().str.contains(q, na=False) |
-                    df_view["Domain"].str.lower().str.contains(q, na=False))
-            df_view = df_view[mask]
+            sort_ascending = st.toggle(
+                "Ascending",
+                value=True
+            )
+
+            df_view = df_view.sort_values(
+                by=sort_col,
+                ascending=sort_ascending
+            )
+
+            df_view = df.copy()
+            if search.strip():
+                q = search.strip().lower()
+                mask = (df_view["Name"].str.lower().str.contains(q, na=False) |
+                        df_view["Skills"].str.lower().str.contains(q, na=False) |
+                        df_view["Role"].str.lower().str.contains(q, na=False) |
+                        df_view["Location"].str.lower().str.contains(q, na=False) |
+                        df_view["Domain"].str.lower().str.contains(q, na=False))
+                df_view = df_view[mask]
 
         df_view = df_view.sort_values(sort_col, ascending=(sort_col == "Name"))
 
