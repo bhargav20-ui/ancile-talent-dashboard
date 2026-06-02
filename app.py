@@ -31,7 +31,7 @@ st.set_page_config(
     page_title="Ancile Talent Intelligence Dashboard",
     page_icon="assets/ancile_logo.png",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded",
 )
 st.markdown("""
 <style>
@@ -227,6 +227,37 @@ div[role="radiogroup"] > label[data-baseweb="radio"] {
     padding: 6px;
     border-radius: 10px;
 }
+
+        
+div[role="radiogroup"] label[data-baseweb="radio"] {
+    padding: 8px !important;
+    border-radius: 10px !important;
+}
+
+div[role="radiogroup"] label[data-baseweb="radio"]:hover {
+    background: rgba(247,108,27,0.15) !important;
+}
+            
+/* =========================
+   Dataframe Menu Fix
+   ========================= */
+
+[data-testid="stDataFrame"] {
+    overflow: visible !important;
+}
+
+[data-testid="stDataFrame"] * {
+    overflow: visible !important;
+}
+
+div[data-testid="stDataFrame"] div[role="menu"] {
+    z-index: 999999 !important;
+}
+
+div[data-testid="stDataFrame"] {
+    position: relative !important;
+    z-index: 1000 !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -235,14 +266,6 @@ div[role="radiogroup"] > label[data-baseweb="radio"] {
 
 df_full = load_data()
 
-if "extra_candidates" not in st.session_state:
-    st.session_state.extra_candidates = pd.DataFrame()
-
-if not st.session_state.extra_candidates.empty:
-    df_full = pd.concat(
-        [df_full, st.session_state.extra_candidates],
-        ignore_index=True
-    )
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
 
@@ -333,7 +356,7 @@ if page == "🏠 Overview":
     header("Recruitment Analytics & Talent Insights · Ancile Inc. 2026")
     kpis = get_kpis(df)
 
-    c1, c2, c3, c4, c5, c6 = st.columns(6)
+    c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
     cards = [
         (c1, "👥", kpis["total_candidates"], "Total Candidates", "In pipeline"),
         (c2, "✅", kpis["placed"],           "Placed",           "Successful"),
@@ -341,6 +364,7 @@ if page == "🏠 Overview":
         (c4, "📈", f"{kpis['placement_rate']}%", "Placement Rate","Success ratio"),
         (c5, "⭐", f"{kpis['avg_match_score']}%","Avg AI Score",  "Match accuracy"),
         (c6, "🏆", kpis["top_domain"],       "Top Domain",       "Highest demand"),
+        (c7, "📄", len(df_full["Role"].unique()), "Active Roles", "Open positions")
     ]
     for col, icon, val, label, sub in cards:
         with col:
@@ -646,10 +670,23 @@ elif page == "🗂 Dataset Explorer":
 
                 df_view = df_view[mask]
 
-            df_view = df_view.sort_values(
-                by=sort_col,
-                ascending=sort_ascending
-            )
+            if sort_col == "Candidate_ID":
+                df_view["_sort_id"] = (
+                    df_view["Candidate_ID"]
+                    .str.replace("ANC", "", regex=False)
+                    .astype(int)
+                )
+
+                df_view = df_view.sort_values(
+                    "_sort_id",
+                    ascending=sort_ascending
+                ).drop(columns="_sort_id")
+
+            else:
+                df_view = df_view.sort_values(
+                    by=sort_col,
+                    ascending=sort_ascending
+                )
 
         st.markdown(f'<div class="section-title">Showing {len(df_view)} of {len(df)} records</div>',
                     unsafe_allow_html=True)
@@ -658,19 +695,7 @@ elif page == "🗂 Dataset Explorer":
             df_view.reset_index(drop=True),
             use_container_width=True,
             height=440,
-            column_config={
-                "Candidate_ID":    st.column_config.TextColumn("ID", width=90),
-                "Name":            st.column_config.TextColumn("Name", width=130),
-                "Domain":          st.column_config.TextColumn("Domain", width=130),
-                "Role":            st.column_config.TextColumn("Role", width=150),
-                "Skills":          st.column_config.TextColumn("Skills", width=250),
-                "Experience_Years": st.column_config.NumberColumn("Exp (yrs)", width=80, format="%.1f"),
-                "Location":        st.column_config.TextColumn("Location", width=100),
-                "Status":          st.column_config.TextColumn("Status", width=80),
-                "Client_Company":  st.column_config.TextColumn("Client", width=120),
-                "Match_Score":     st.column_config.ProgressColumn("Match %", min_value=0, max_value=100, width=110),
-                "Joined_Month":    st.column_config.TextColumn("Joined", width=110),
-            }
+            hide_index=True
         )
 
         csv_bytes = df_view.to_csv(index=False).encode("utf-8")
@@ -815,7 +840,11 @@ elif page == "👥 Manage Candidates":
         delete_options
     )
 
-    if st.button(
+    confirm_delete = st.checkbox(
+    "I confirm deletion"
+    )
+
+    if confirm_delete and st.button(
         "Delete Candidate",
         type="secondary"
     ):
@@ -881,7 +910,7 @@ elif page == "ℹ️ About":
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("""
+        st.markdown(f"""
         <div class="about-card">
             <h4>Tech Stack</h4>
             <ul>
