@@ -238,25 +238,11 @@ div[role="radiogroup"] label[data-baseweb="radio"]:hover {
     background: rgba(247,108,27,0.15) !important;
 }
             
-/* =========================
-   Dataframe Menu Fix
-   ========================= */
-
-[data-testid="stDataFrame"] {
-    overflow: visible !important;
+button[title="Column menu"] {
+    display: none !important;
 }
-
-[data-testid="stDataFrame"] * {
-    overflow: visible !important;
-}
-
-div[data-testid="stDataFrame"] div[role="menu"] {
-    z-index: 999999 !important;
-}
-
-div[data-testid="stDataFrame"] {
-    position: relative !important;
-    z-index: 1000 !important;
+[data-testid="stDataFrame"] button {
+    display: none !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -691,11 +677,12 @@ elif page == "🗂 Dataset Explorer":
         st.markdown(f'<div class="section-title">Showing {len(df_view)} of {len(df)} records</div>',
                     unsafe_allow_html=True)
 
-        st.dataframe(
+        st.data_editor(
             df_view.reset_index(drop=True),
             use_container_width=True,
-            height=440,
-            hide_index=True
+            height=600,
+            hide_index=True,
+            disabled=True
         )
 
         csv_bytes = df_view.to_csv(index=False).encode("utf-8")
