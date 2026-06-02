@@ -31,7 +31,7 @@ st.set_page_config(
     page_title="Ancile Talent Intelligence Dashboard",
     page_icon="assets/ancile_logo.png",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed"
 )
 st.markdown("""
 <style>
@@ -210,6 +210,23 @@ div[data-baseweb="select"] > div {
     margin-top: 10px;
 }
 .tip-box span { color: #8892A4; font-size: 0.80rem; }
+            
+/* Sidebar menu */
+
+div[role="radiogroup"] label {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    color: white !important;
+}
+
+div[role="radiogroup"] label:hover {
+    color: #F76C1B !important;
+}
+
+div[role="radiogroup"] > label[data-baseweb="radio"] {
+    padding: 6px;
+    border-radius: 10px;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -252,13 +269,13 @@ with st.sidebar:
     page = st.radio(
         "Navigation",
         [
-            "Overview",
-            "Analytics",
-            "AI Skill Matcher",
-            "Dataset Explorer",
+            "🏠 Overview",
+            "📊 Analytics",
+            "🤖 AI Skill Matcher",
+            "🗂 Dataset Explorer",
             "📄 Resume Upload",
             "👥 Manage Candidates",
-            "About"
+            "ℹ️ About"
         ],
         label_visibility="collapsed"
     )
@@ -268,7 +285,7 @@ with st.sidebar:
         unsafe_allow_html=True
     )
     # Filters (Analytics + Explorer only)
-    if page in ["Overview", "Analytics", "Dataset Explorer"]:
+    if page in ["🏠 Overview", "📊 Analytics", "🗂 Dataset Explorer"]:
         st.markdown('<div class="filter-label">Filters</div>', unsafe_allow_html=True)
         sel_domain = st.selectbox("Domain", ["All"] + sorted(df_full["Domain"].unique()), key="fd")
         sel_status = st.selectbox("Status", ["All","Placed","Pending","Rejected"], key="fs")
@@ -312,7 +329,7 @@ def kpi_card(icon, value, label, sub=""):
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE 1 — OVERVIEW
 # ═══════════════════════════════════════════════════════════════════════════════
-if page == "Overview":
+if page == "🏠 Overview":
     header("Recruitment Analytics & Talent Insights · Ancile Inc. 2026")
     kpis = get_kpis(df)
 
@@ -351,7 +368,7 @@ if page == "Overview":
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE 2 — ANALYTICS
 # ═══════════════════════════════════════════════════════════════════════════════
-elif page == "Analytics":
+elif page == "📊 Analytics":
     header("Deep-Dive Analytics · Filtered & Interactive")
 
     if len(df) == 0:
@@ -405,7 +422,7 @@ elif page == "Analytics":
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE 3 — AI SKILL MATCHER
 # ═══════════════════════════════════════════════════════════════════════════════
-elif page == "AI Skill Matcher":
+elif page == "🤖 AI Skill Matcher":
     header("AI-Powered Role Recommendation · TF-IDF + Cosine Similarity")
 
     st.markdown("""
@@ -586,7 +603,7 @@ elif page == "AI Skill Matcher":
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE 4 — DATASET EXPLORER
 # ═══════════════════════════════════════════════════════════════════════════════
-elif page == "Dataset Explorer":
+elif page == "🗂 Dataset Explorer":
     header("Raw Data Explorer · Search, Filter & Export")
 
     if len(df) == 0:
@@ -614,22 +631,25 @@ elif page == "Dataset Explorer":
                 value=True
             )
 
+            df_view = df.copy()
+
+            if search.strip():
+                q = search.strip().lower()
+
+                mask = (
+                    df_view["Name"].str.lower().str.contains(q, na=False)
+                    | df_view["Skills"].str.lower().str.contains(q, na=False)
+                    | df_view["Role"].str.lower().str.contains(q, na=False)
+                    | df_view["Location"].str.lower().str.contains(q, na=False)
+                    | df_view["Domain"].str.lower().str.contains(q, na=False)
+                )
+
+                df_view = df_view[mask]
+
             df_view = df_view.sort_values(
                 by=sort_col,
                 ascending=sort_ascending
             )
-
-            df_view = df.copy()
-            if search.strip():
-                q = search.strip().lower()
-                mask = (df_view["Name"].str.lower().str.contains(q, na=False) |
-                        df_view["Skills"].str.lower().str.contains(q, na=False) |
-                        df_view["Role"].str.lower().str.contains(q, na=False) |
-                        df_view["Location"].str.lower().str.contains(q, na=False) |
-                        df_view["Domain"].str.lower().str.contains(q, na=False))
-                df_view = df_view[mask]
-
-        df_view = df_view.sort_values(sort_col, ascending=(sort_col == "Name"))
 
         st.markdown(f'<div class="section-title">Showing {len(df_view)} of {len(df)} records</div>',
                     unsafe_allow_html=True)
@@ -842,7 +862,7 @@ elif page == "👥 Manage Candidates":
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE 5 — ABOUT
 # ═══════════════════════════════════════════════════════════════════════════════
-elif page == "About":
+elif page == "ℹ️ About":
 
     header("Project Overview, Technology Stack & Architecture")
 
