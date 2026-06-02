@@ -208,9 +208,17 @@ div[data-baseweb="select"] > div {
 
 
 # ── Load data ─────────────────────────────────────────────────────────────────
+
 df_full = load_data()
 
+if "extra_candidates" not in st.session_state:
+    st.session_state.extra_candidates = pd.DataFrame()
 
+if not st.session_state.extra_candidates.empty:
+    df_full = pd.concat(
+        [df_full, st.session_state.extra_candidates],
+        ignore_index=True
+    )
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
 
@@ -241,6 +249,8 @@ with st.sidebar:
             "Analytics",
             "AI Skill Matcher",
             "Dataset Explorer",
+            "📄 Resume Upload",
+            "➕ Add Candidate",
             "About"
         ],
         label_visibility="collapsed"
@@ -251,7 +261,7 @@ with st.sidebar:
         unsafe_allow_html=True
     )
     # Filters (Analytics + Explorer only)
-    if page in ["Analytics", "Dataset Explorer"]:
+    if page in ["Overview", "Analytics", "Dataset Explorer"]:
         st.markdown('<div class="filter-label">Filters</div>', unsafe_allow_html=True)
         sel_domain = st.selectbox("Domain", ["All"] + sorted(df_full["Domain"].unique()), key="fd")
         sel_status = st.selectbox("Status", ["All","Placed","Pending","Rejected"], key="fs")
@@ -297,7 +307,7 @@ def kpi_card(icon, value, label, sub=""):
 # ═══════════════════════════════════════════════════════════════════════════════
 if page == "Overview":
     header("Recruitment Analytics & Talent Insights · Ancile Inc. 2026")
-    kpis = get_kpis(df_full)
+    kpis = get_kpis(df)
 
     c1, c2, c3, c4, c5, c6 = st.columns(6)
     cards = [
@@ -317,18 +327,18 @@ if page == "Overview":
     r1c1, r1c2 = st.columns(2)
     with r1c1:
         st.markdown('<div class="section-title">In-Demand Skills</div>', unsafe_allow_html=True)
-        st.plotly_chart(chart_top_skills(df_full, 8), use_container_width=True)
+        st.plotly_chart(chart_top_skills(df, 8), use_container_width=True)
     with r1c2:
         st.markdown('<div class="section-title">Domain Distribution</div>', unsafe_allow_html=True)
-        st.plotly_chart(chart_domain_distribution(df_full), use_container_width=True)
+        st.plotly_chart(chart_domain_distribution(df), use_container_width=True)
 
     r2c1, r2c2 = st.columns(2)
     with r2c1:
         st.markdown('<div class="section-title">Monthly Joining Trend</div>', unsafe_allow_html=True)
-        st.plotly_chart(chart_monthly_trend(df_full), use_container_width=True)
+        st.plotly_chart(chart_monthly_trend(df), use_container_width=True)
     with r2c2:
         st.markdown('<div class="section-title">Recruitment Funnel</div>', unsafe_allow_html=True)
-        st.plotly_chart(chart_status_funnel(df_full), use_container_width=True)
+        st.plotly_chart(chart_status_funnel(df), use_container_width=True)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -621,7 +631,114 @@ elif page == "Dataset Explorer":
                            file_name="ancile_candidates_export.csv",
                            mime="text/csv", type="primary")
 
+elif page == "📄 Resume Upload":
 
+    header("Resume Upload Portal")
+
+    st.markdown("""
+    <div class="about-card">
+        <h4>Upload Candidate Resume</h4>
+        <p>
+        Recruiters can upload resumes for future processing and evaluation.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    uploaded_file = st.file_uploader(
+        "Upload Resume",
+        type=["pdf"]
+    )
+
+    if uploaded_file:
+
+        size_kb = round(
+            uploaded_file.size / 1024,
+            2
+        )
+
+        st.success(
+            "Resume uploaded successfully and ready for future processing."
+        )
+
+        st.info(
+            f"Filename: {uploaded_file.name}\n\n"
+            f"File Size: {size_kb} KB"
+        )
+
+elif page == "➕ Add Candidate":
+
+    header("Recruiter Candidate Entry")
+
+    st.markdown("""
+    <div class="about-card">
+        <h4>Add Candidate</h4>
+        <p>
+        Add a candidate profile directly into the recruitment pipeline.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    with st.form("candidate_form"):
+
+        name = st.text_input("Candidate Name")
+
+        skills = st.text_area(
+            "Skills",
+            placeholder="Python, SQL, Power BI"
+        )
+
+        experience = st.number_input(
+            "Experience (Years)",
+            min_value=0.0,
+            max_value=30.0,
+            value=1.0,
+            step=0.5
+        )
+
+        domain = st.selectbox(
+            "Domain",
+            sorted(df_full["Domain"].unique())
+        )
+
+        status = st.selectbox(
+            "Status",
+            ["Pending", "Placed", "Rejected"]
+        )
+
+        submit = st.form_submit_button(
+            "Add Candidate",
+            type="primary"
+        )
+
+    if submit:
+
+        new_row = {
+            "Candidate_ID": f"NEW-{len(df_full)+1}",
+            "Name": name,
+            "Skills": skills,
+            "Experience_Years": experience,
+            "Domain": domain,
+            "Status": status,
+            "Role": "Not Assigned",
+            "Location": "N/A",
+            "Client_Company": "N/A",
+            "Match_Score": 0,
+            "Joined_Month": pd.Timestamp.today().strftime("%B %Y")
+        }
+
+        st.session_state.extra_candidates = pd.concat(
+            [
+                st.session_state.extra_candidates,
+                pd.DataFrame([new_row])
+            ],
+            ignore_index=True
+        )
+
+        st.success(f"{name} added successfully!")
+
+        st.balloons()
+        
+        st.rerun()
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE 5 — ABOUT
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -653,7 +770,7 @@ elif page == "About":
                 <li><b style="color:white;">AI Module:</b> TF-IDF + Cosine Similarity</li>
                 <li><b style="color:white;">PDF Parsing:</b> PyMuPDF</li>
                 <li><b style="color:white;">Version Control:</b> GitHub</li>
-                <li><b style="color:white;">Dataset:</b> 250 Candidate Profiles</li>
+                <li><b style="color:white;">Dataset:</b> {len(df_full)} Candidate Profiles</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
