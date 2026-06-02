@@ -250,7 +250,7 @@ with st.sidebar:
             "AI Skill Matcher",
             "Dataset Explorer",
             "📄 Resume Upload",
-            "➕ Add Candidate",
+            "👥 Manage Candidates",
             "About"
         ],
         label_visibility="collapsed"
@@ -665,18 +665,24 @@ elif page == "📄 Resume Upload":
             f"File Size: {size_kb} KB"
         )
 
-elif page == "➕ Add Candidate":
+elif page == "👥 Manage Candidates":
 
-    header("Recruiter Candidate Entry")
+    header("Candidate Management Portal")
 
     st.markdown("""
     <div class="about-card">
-        <h4>Add Candidate</h4>
+        <h4>Manage Candidates</h4>
         <p>
-        Add a candidate profile directly into the recruitment pipeline.
+        Add new candidates or remove existing candidates from the recruitment pipeline.
         </p>
     </div>
     """, unsafe_allow_html=True)
+
+    # ==========================
+    # ADD CANDIDATE
+    # ==========================
+
+    st.subheader("➕ Add Candidate")
 
     with st.form("candidate_form"):
 
@@ -712,33 +718,100 @@ elif page == "➕ Add Candidate":
 
     if submit:
 
+        csv_path = "data/candidates.csv"
+
+        latest_df = pd.read_csv(csv_path)
+
+        new_id = f"ANC{int(latest_df['Candidate_ID'].str.replace('ANC','').astype(int).max()) + 1}"
+
         new_row = {
-            "Candidate_ID": f"NEW-{len(df_full)+1}",
+            "Candidate_ID": new_id,
             "Name": name,
+            "Domain": domain,
+            "Role": "Not Assigned",
             "Skills": skills,
             "Experience_Years": experience,
-            "Domain": domain,
-            "Status": status,
-            "Role": "Not Assigned",
             "Location": "N/A",
+            "Status": status,
             "Client_Company": "N/A",
             "Match_Score": 0,
             "Joined_Month": pd.Timestamp.today().strftime("%B %Y")
         }
 
-        st.session_state.extra_candidates = pd.concat(
-            [
-                st.session_state.extra_candidates,
-                pd.DataFrame([new_row])
-            ],
+        latest_df = pd.concat(
+            [latest_df, pd.DataFrame([new_row])],
             ignore_index=True
         )
 
-        st.success(f"{name} added successfully!")
+        latest_df.to_csv(csv_path, index=False)
 
+        st.success(f"{name} added successfully!")
         st.balloons()
-        
+        st.cache_data.clear()
         st.rerun()
+
+    st.divider()
+
+    # ==========================
+    # DELETE CANDIDATE
+    # ==========================
+
+    st.subheader("🗑 Delete Candidate")
+
+    delete_options = [
+        f"{row['Candidate_ID']} - {row['Name']}"
+        for _, row in df_full.iterrows()
+    ]
+
+    candidate_to_delete = st.selectbox(
+        "Select Candidate",
+        delete_options
+    )
+
+    if st.button(
+        "Delete Candidate",
+        type="secondary"
+    ):
+
+        candidate_id = candidate_to_delete.split(" - ")[0]
+
+        csv_path = "data/candidates.csv"
+
+        latest_df = pd.read_csv(csv_path)
+
+        latest_df = latest_df[
+            latest_df["Candidate_ID"] != candidate_id
+        ]
+
+        latest_df.to_csv(csv_path, index=False)
+
+        st.success(
+            f"{candidate_to_delete} deleted successfully!"
+        )
+
+        st.cache_data.clear()
+        st.rerun()
+
+    st.divider()
+
+    # ==========================
+    # PREVIEW
+    # ==========================
+
+    st.subheader("📋 Candidate Preview")
+
+    st.dataframe(
+        df_full[
+            [
+                "Candidate_ID",
+                "Name",
+                "Domain",
+                "Status"
+            ]
+        ],
+        use_container_width=True,
+        hide_index=True
+    )
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE 5 — ABOUT
 # ═══════════════════════════════════════════════════════════════════════════════
