@@ -31,7 +31,7 @@ st.set_page_config(
     page_title="Ancile Talent Intelligence Dashboard",
     page_icon="assets/ancile_logo.png",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 st.markdown("""
 <style>
@@ -238,12 +238,17 @@ div[role="radiogroup"] label[data-baseweb="radio"]:hover {
     background: rgba(247,108,27,0.15) !important;
 }
             
-button[title="Column menu"] {
-    display: none !important;
+
+/* DataFrame styling */
+
+[data-testid="stDataFrame"] {
+    border-radius: 10px;
 }
-[data-testid="stDataFrame"] button {
-    display: none !important;
+
+[data-testid="stDataFrame"] table {
+    font-size: 14px !important;
 }
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -677,12 +682,11 @@ elif page == "🗂 Dataset Explorer":
         st.markdown(f'<div class="section-title">Showing {len(df_view)} of {len(df)} records</div>',
                     unsafe_allow_html=True)
 
-        st.data_editor(
+        st.dataframe(
             df_view.reset_index(drop=True),
             use_container_width=True,
             height=600,
             hide_index=True,
-            disabled=True
         )
 
         csv_bytes = df_view.to_csv(index=False).encode("utf-8")
@@ -871,9 +875,10 @@ elif page == "👥 Manage Candidates":
                 "Domain",
                 "Status"
             ]
-        ],
+        ].sort_values("Candidate_ID"),
         use_container_width=True,
-        hide_index=True
+        hide_index=True,
+        height=350
     )
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE 5 — ABOUT
