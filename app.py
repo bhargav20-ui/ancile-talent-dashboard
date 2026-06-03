@@ -284,6 +284,7 @@ textarea::placeholder {
 
 # ── Load data ─────────────────────────────────────────────────────────────────
 df_full = load_data()
+st.sidebar.caption(f"Dataset Size: {len(df_full):,} candidates")
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     c1, c2, c3 = st.columns([1, 2, 1])
@@ -321,7 +322,10 @@ with st.sidebar:
     if page in ["🏠 Overview", "📊 Analytics", "🗂 Dataset Explorer"]:
         st.markdown('<div class="filter-label">Filters</div>', unsafe_allow_html=True)
         sel_domain = st.selectbox("Domain", ["All"] + sorted(df_full["Domain"].unique()), key="fd")
-        sel_status = st.selectbox("Status", ["All", "Placed", "Pending", "Rejected"], key="fs")
+        sel_status = st.selectbox(
+            "Status",
+            ["All"] + sorted(df_full["Status"].dropna().unique().tolist())
+        )
         emin = float(df_full["Experience_Years"].min())
         emax = float(df_full["Experience_Years"].max())
         sel_exp = st.slider("Experience (yrs)", emin, emax, (emin, emax), step=0.5, key="fe")
@@ -344,7 +348,7 @@ def header(subtitle: str):
             <h1>Ancile Talent Intelligence Dashboard</h1>
             <p>{subtitle}</p>
         </div>
-        <span class="ancile-badge">LIVE &middot; {len(df_full)} Candidates</span>
+        <span class="ancile-badge">LIVE · {len(df_full):,} Candidates</span>
     </div>
     """,
         unsafe_allow_html=True,
@@ -372,13 +376,13 @@ if page == "🏠 Overview":
 
     c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
     cards = [
-        (c1, "👥", kpis["total_candidates"],        "Total Candidates", "In pipeline"),
-        (c2, "✅", kpis["placed"],                  "Placed",           "Successful"),
-        (c3, "🕐", kpis["pending"],                 "Pending",          "In review"),
+        (c1, "👥", f"{kpis['total_candidates']:,}", "Total Candidates", "In pipeline"),
+        (c2, "✅", f"{kpis['placed']:,}",                  "Placed",           "Successful"),
+        (c3, "🕐", f"{kpis['pending']:,}",                 "Pending",          "In review"),
         (c4, "📈", f"{kpis['placement_rate']}%",    "Placement Rate",   "Success ratio"),
         (c5, "⭐", f"{kpis['avg_match_score']}%",   "Avg AI Score",     "Match accuracy"),
-        (c6, "🏆", kpis["top_domain"],              "Top Domain",       "Highest demand"),
-        (c7, "📄", len(df_full["Role"].unique()),    "Active Roles",     "Open positions"),
+        (c6, "🏆", f"{kpis['top_domain']}",              "Top Domain",       "Highest demand"),
+        (c7, "📄", f"{len(df_full['Role'].unique()):,}",    "Active Roles",     "Open positions"),
     ]
     for col, icon, val, label, sub in cards:
         with col:
@@ -790,7 +794,10 @@ elif page == "👥 Manage Candidates":
             "Experience (Years)", min_value=0.0, max_value=30.0, value=1.0, step=0.5
         )
         domain = st.selectbox("Domain", sorted(df_full["Domain"].unique()))
-        status = st.selectbox("Status", ["Pending", "Placed", "Rejected"])
+        status = st.selectbox(
+            "Status",
+            sorted(df_full["Status"].dropna().unique())
+        )
         submit = st.form_submit_button("Add Candidate", type="primary")
 
     if submit:
@@ -833,7 +840,11 @@ elif page == "👥 Manage Candidates":
     )
     confirm_delete      = st.checkbox("I confirm deletion")
 
-    if confirm_delete and st.button("Delete Candidate", type="secondary"):
+    if (
+            candidate_to_delete != "Select a candidate..."
+            and confirm_delete
+            and st.button("Delete Candidate", type="secondary")
+        ):
         candidate_id = candidate_to_delete.split(" - ")[0]
         csv_path     = os.path.join(ROOT, "data", "candidates.csv")
         latest_df    = pd.read_csv(csv_path)
@@ -884,7 +895,7 @@ elif page == "ℹ️ About":
                 <li><b style="color:white;">AI Module:</b> TF-IDF + Cosine Similarity</li>
                 <li><b style="color:white;">PDF Parsing:</b> PyMuPDF</li>
                 <li><b style="color:white;">Version Control:</b> GitHub</li>
-                <li><b style="color:white;">Dataset:</b> {len(df_full)} Candidate Profiles</li>
+                <li><b style="color:white;">Dataset:</b> {len(df_full):,} Candidate Profiles</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)

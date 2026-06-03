@@ -8,7 +8,7 @@ import pandas as pd
 import streamlit as st
 
 
-@st.cache_data(ttl=1)
+@st.cache_data(ttl=60)
 def load_data() -> pd.DataFrame:
     """Load candidates.csv from data/ folder, safe for all OS."""
     # Try multiple path strategies so it works locally AND on Streamlit Cloud
@@ -34,23 +34,38 @@ def load_data() -> pd.DataFrame:
 
 
 def get_kpis(df: pd.DataFrame) -> dict:
-    """Compute KPIs from a (potentially filtered) dataframe."""
-    total     = len(df)
-    placed    = len(df[df["Status"] == "Placed"])
-    rejected  = len(df[df["Status"] == "Rejected"])
-    pending   = len(df[df["Status"] == "Pending"])
-    p_rate    = round(placed / total * 100, 1) if total else 0
-    avg_exp   = round(df["Experience_Years"].mean(), 1) if total else 0
+    total = len(df)
+
+    placed = len(df[df["Status"] == "Placed"])
+
+    pending_statuses = [
+        "Interviewing",
+        "Shortlisted",
+        "Screening",
+        "Offer Sent",
+        "In Pipeline",
+    ]
+
+    pending = len(df[df["Status"].isin(pending_statuses)])
+
+    rejected = len(df[df["Status"] == "Rejected"])
+
+    placement_rate = round((placed / total) * 100, 1) if total else 0
+    avg_exp = round(df["Experience_Years"].mean(), 1) if total else 0
     avg_score = round(df["Match_Score"].mean(), 1) if total else 0
-    top_domain = df["Domain"].value_counts().idxmax() if total else "N/A"
+
+    top_domain = (
+        df["Domain"].value_counts().idxmax()
+        if total else "N/A"
+    )
 
     return {
         "total_candidates": total,
-        "placed":           placed,
-        "pending":          pending,
-        "rejected":         rejected,
-        "placement_rate":   p_rate,
-        "avg_experience":   avg_exp,
-        "avg_match_score":  avg_score,
-        "top_domain":       top_domain,
+        "placed": placed,
+        "pending": pending,
+        "rejected": rejected,
+        "placement_rate": placement_rate,
+        "avg_experience": avg_exp,
+        "avg_match_score": avg_score,
+        "top_domain": top_domain,
     }
