@@ -8,7 +8,7 @@ import pandas as pd
 import streamlit as st
 
 
-@st.cache_data(ttl=1)
+@st.cache_data
 def load_data() -> pd.DataFrame:
     """Load candidates.csv from data/ folder, safe for all OS."""
     # Try multiple path strategies so it works locally AND on Streamlit Cloud
