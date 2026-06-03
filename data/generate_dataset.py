@@ -1,126 +1,200 @@
-# -*- coding: utf-8 -*-
-"""
-Ancile Talent Intelligence - Dataset Generator
-250 rows, Kaggle-style realistic Indian tech recruitment data
-Columns match app.py exactly: Candidate_ID, Name, Domain, Role, Skills,
-Experience_Years, Location, Status, Client_Company, Match_Score, Joined_Month
-"""
 import pandas as pd
+import numpy as np
 import random
+from datetime import datetime, timedelta
 
+np.random.seed(42)
 random.seed(42)
 
-FIRST_NAMES = [
-    "Aarav","Priya","Rohan","Ananya","Kiran","Sneha","Vikram","Pooja","Arjun","Meera",
-    "Rahul","Deepika","Sanjay","Kavya","Amit","Shreya","Nikhil","Tanvi","Raj","Divya",
-    "Aditya","Nisha","Siddharth","Riya","Kartik","Dev","Swathi","Varun","Lakshmi","Harish",
-    "Anjali","Suresh","Bhavna","Mohan","Geeta","Sunil","Lavanya","Mahesh","Padma","Ganesh",
-    "Venkat","Usha","Prasad","Suma","Naveen","Hema","Rajesh","Shobha","Vijay","Sudha",
-    "Krishna","Manoj","Sunitha","Ravi","Vani","Satish","Latha","Dinesh","Revathi","Ashok",
-    "Chitra","Balaji","Saranya","Vinod","Malathi","Prakash","Geetha","Ramesh","Yamini","Srinivas",
-]
-
-LAST_NAMES = [
-    "Kumar","Sharma","Reddy","Patel","Singh","Nair","Rao","Iyer","Gupta","Joshi",
-    "Verma","Mehta","Shah","Menon","Pillai","Bhat","Agarwal","Sinha","Pandey","Tiwari",
-    "Chauhan","Malhotra","Kapoor","Saxena","Dubey","Mishra","Shukla","Trivedi","Dasgupta","Bose",
-    "Naidu","Shetty","Chatterjee","Murthy","Krishnan","Venkatesh","Subramanian","Rajan","Hegde","Kulkarni",
-]
-
-DOMAINS = {
+# ── Domain → Roles → Skills ──────────────────────────────────────────────────
+domain_config = {
+    "AI/ML": {
+        "roles": ["ML Engineer", "AI Researcher", "NLP Engineer", "Computer Vision Engineer", "Deep Learning Engineer"],
+        "skills_pool": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "NLP", "Computer Vision",
+                        "Deep Learning", "Keras", "Hugging Face", "OpenCV", "MLflow", "BERT", "LLMs", "NumPy", "Pandas"],
+        "count": 1200
+    },
     "Data Analytics": {
-        "roles": ["Data Analyst", "BI Developer", "Data Engineer"],
-        "skills": ["Python","SQL","Power BI","Excel","Tableau","Pandas","NumPy","R","Matplotlib","Seaborn","Statistics","Data Visualization"],
+        "roles": ["Data Analyst", "Business Analyst", "BI Developer", "Data Engineer", "Analytics Consultant"],
+        "skills_pool": ["Python", "SQL", "Power BI", "Tableau", "Excel", "Pandas", "NumPy",
+                        "Statistics", "R", "Google Analytics", "Looker", "Spark", "ETL", "Data Visualization"],
+        "count": 1200
+    },
+    "Data Science": {
+        "roles": ["Data Scientist", "Quantitative Analyst", "Research Scientist", "ML Analyst"],
+        "skills_pool": ["Python", "R", "SQL", "Machine Learning", "Statistics", "Pandas", "Scikit-learn",
+                        "Matplotlib", "Seaborn", "Jupyter", "A/B Testing", "Bayesian Analysis", "Feature Engineering"],
+        "count": 800
     },
     "Web Development": {
-        "roles": ["Frontend Developer", "Full Stack Developer", "Backend Developer"],
-        "skills": ["HTML","CSS","JavaScript","React","Node.js","MongoDB","Express","TypeScript","Vue.js","REST API","Git","Bootstrap","Redux"],
-    },
-    "Cloud & DevOps": {
-        "roles": ["Cloud Engineer", "DevOps Engineer", "Solutions Architect"],
-        "skills": ["AWS","Azure","GCP","Docker","Kubernetes","Terraform","Linux","CI/CD","Jenkins","Ansible","Git","Prometheus","Grafana"],
-    },
-    "AI/ML": {
-        "roles": ["ML Engineer", "Data Scientist", "AI Research Intern"],
-        "skills": ["Python","TensorFlow","Scikit-learn","Keras","NLP","PyTorch","OpenCV","Pandas","Statistics","Deep Learning","Hugging Face","LLMs"],
+        "roles": ["Frontend Developer", "Backend Developer", "Full Stack Developer", "React Developer", "Node.js Developer"],
+        "skills_pool": ["HTML", "CSS", "JavaScript", "React", "Node.js", "Express", "MongoDB",
+                        "TypeScript", "Vue.js", "Angular", "REST APIs", "GraphQL", "Next.js", "Django", "Flask"],
+        "count": 1000
     },
     "Cybersecurity": {
-        "roles": ["Security Analyst", "Penetration Tester", "SOC Analyst"],
-        "skills": ["Network Security","Ethical Hacking","SIEM","Firewall","Linux","Python","Vulnerability Assessment","Wireshark","OWASP","Cryptography","Splunk","Metasploit"],
+        "roles": ["Security Analyst", "Penetration Tester", "SOC Analyst", "IAM Engineer", "Security Engineer"],
+        "skills_pool": ["Network Security", "Ethical Hacking", "SIEM", "Firewalls", "Linux",
+                        "Vulnerability Assessment", "Python", "OWASP", "ISO 27001", "Incident Response",
+                        "Cloud Security", "Zero Trust", "CISSP", "CompTIA Security+"],
+        "count": 900
+    },
+    "Cloud Engineering": {
+        "roles": ["Cloud Architect", "AWS Engineer", "Azure Engineer", "GCP Engineer", "Cloud DevOps Engineer"],
+        "skills_pool": ["AWS", "Azure", "GCP", "Terraform", "Kubernetes", "Docker",
+                        "CI/CD", "Linux", "Networking", "IAM", "CloudFormation", "Ansible", "Jenkins"],
+        "count": 800
+    },
+    "DevOps": {
+        "roles": ["DevOps Engineer", "Site Reliability Engineer", "Platform Engineer", "Build Engineer"],
+        "skills_pool": ["Docker", "Kubernetes", "Jenkins", "CI/CD", "Ansible", "Terraform",
+                        "Linux", "Python", "Shell Scripting", "Git", "Prometheus", "Grafana", "AWS"],
+        "count": 600
+    },
+    "Mobile Development": {
+        "roles": ["Android Developer", "iOS Developer", "Flutter Developer", "React Native Developer"],
+        "skills_pool": ["Flutter", "Dart", "React Native", "Swift", "Kotlin", "Java",
+                        "Android SDK", "iOS SDK", "Firebase", "REST APIs", "UI/UX", "App Store"],
+        "count": 500
     },
     "Business Consulting": {
-        "roles": ["Business Analyst", "IT Consultant", "Project Manager"],
-        "skills": ["Excel","PowerPoint","Project Management","Agile","JIRA","Business Analysis","SQL","Stakeholder Management","SAP","CRM","ITIL","Scrum"],
+        "roles": ["Business Consultant", "Strategy Analyst", "Management Consultant", "IT Consultant"],
+        "skills_pool": ["Business Analysis", "Strategy", "PowerPoint", "Excel", "Project Management",
+                        "Stakeholder Management", "Process Improvement", "Agile", "JIRA", "Communication"],
+        "count": 900
+    },
+    "Finance": {
+        "roles": ["Financial Analyst", "Investment Analyst", "Accountant", "Risk Analyst", "CFO Analyst"],
+        "skills_pool": ["Excel", "Financial Modeling", "Accounting", "SAP", "SQL", "Power BI",
+                        "Tally", "Taxation", "Audit", "Bloomberg", "Valuation", "CFA", "Python"],
+        "count": 700
+    },
+    "HR": {
+        "roles": ["HR Executive", "Talent Acquisition", "HR Business Partner", "Recruiter", "L&D Specialist"],
+        "skills_pool": ["Recruitment", "Onboarding", "HRMS", "Communication", "LinkedIn Recruiter",
+                        "Excel", "Employee Engagement", "Performance Management", "Labor Law", "ATS"],
+        "count": 600
+    },
+    "Sales": {
+        "roles": ["Sales Executive", "Account Manager", "Customer Success Manager", "Business Development"],
+        "skills_pool": ["CRM", "Salesforce", "Communication", "Negotiation", "Excel",
+                        "Lead Generation", "Cold Calling", "B2B Sales", "HubSpot", "Client Relations"],
+        "count": 700
+    },
+    "Mechanical Engineering": {
+        "roles": ["Mechanical Engineer", "Design Engineer", "Manufacturing Engineer", "Quality Engineer"],
+        "skills_pool": ["AutoCAD", "SolidWorks", "CATIA", "ANSYS", "Thermodynamics",
+                        "Manufacturing", "GD&T", "Six Sigma", "MATLAB", "Lean Manufacturing"],
+        "count": 500
+    },
+    "Civil Engineering": {
+        "roles": ["Civil Engineer", "Structural Engineer", "Site Engineer", "Project Manager"],
+        "skills_pool": ["AutoCAD", "STAAD Pro", "Project Management", "Surveying",
+                        "Structural Analysis", "Construction Management", "Revit", "MS Project"],
+        "count": 500
+    },
+    "Electronics & Communication": {
+        "roles": ["ECE Engineer", "Embedded Systems Engineer", "VLSI Engineer", "RF Engineer", "IoT Engineer"],
+        "skills_pool": ["Embedded C", "Arduino", "Raspberry Pi", "MATLAB", "VHDL",
+                        "PCB Design", "IoT", "Python", "Signal Processing", "Microcontrollers"],
+        "count": 600
+    },
+    "Healthcare": {
+        "roles": ["Nurse", "Pharmacist", "Healthcare Manager", "Clinical Data Analyst", "Medical Coder"],
+        "skills_pool": ["Patient Care", "Medical Coding", "ICD-10", "EMR", "Clinical Research",
+                        "Pharmacology", "Healthcare IT", "Excel", "HIPAA Compliance"],
+        "count": 400
+    },
+    "Project Management": {
+        "roles": ["Project Manager", "Scrum Master", "Agile Coach", "Program Manager"],
+        "skills_pool": ["PMP", "Agile", "Scrum", "JIRA", "MS Project", "Risk Management",
+                        "Stakeholder Management", "Budgeting", "Communication", "Confluence"],
+        "count": 500
     },
 }
 
-LOCATIONS = ["Hyderabad","Bangalore","Chennai","Mumbai","Delhi","Pune","Ahmedabad","Kolkata","Noida","Gurgaon","Coimbatore","Kochi","Jaipur","Chandigarh"]
+indian_cities = [
+    "Bangalore", "Hyderabad", "Chennai", "Pune", "Mumbai",
+    "Delhi", "Noida", "Gurgaon", "Kochi", "Ahmedabad",
+    "Vijayawada", "Visakhapatnam", "Kolkata", "Jaipur", "Chandigarh"
+]
 
-CLIENTS = ["Volvo","TCS","Infosys","Wipro","Accenture","Capgemini","IBM","Deloitte","HCL","Tech Mahindra","Cognizant","Amazon","Microsoft","Google India","Zoho","Freshworks","Swiggy","Bosch","SAP Labs","Oracle"]
+client_companies = [
+    "Microsoft", "Google", "Amazon", "Infosys", "TCS",
+    "Accenture", "Capgemini", "Deloitte", "Wipro", "Cognizant",
+    "HCL", "IBM", "Oracle", "SAP", "Salesforce",
+    "Tech Mahindra", "Hexaware", "Mphasis", "LTIMindtree", "Persistent"
+]
 
-MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+first_names = [
+    "Rahul", "Priya", "Arjun", "Sneha", "Kiran", "Divya", "Amit", "Pooja",
+    "Vijay", "Ananya", "Ravi", "Meera", "Suresh", "Lakshmi", "Naveen",
+    "Kavitha", "Sanjay", "Deepa", "Rajesh", "Nithya", "Arun", "Sowmya",
+    "Harish", "Bhavana", "Ganesh", "Swathi", "Venkat", "Padma", "Krishna",
+    "Sindhu", "Mohan", "Rekha", "Prasad", "Uma", "Srikanth", "Anjali",
+    "Manoj", "Lavanya", "Ashok", "Revathi", "Vishal", "Keerthi", "Sunil",
+    "Nandini", "Prakash", "Sirisha", "Ramesh", "Spandana", "Dinesh", "Asha"
+]
 
-STATUS_MAP = {
-    "Placed":   (0.50, 1.00),   # 50% of rows
-    "Pending":  (0.20, 0.49),
-    "Rejected": (0.07, 0.19),
-}
+last_names = [
+    "Sharma", "Reddy", "Kumar", "Patel", "Singh", "Rao", "Nair", "Iyer",
+    "Gupta", "Verma", "Joshi", "Mehta", "Pillai", "Menon", "Chaudhary",
+    "Naidu", "Shetty", "Bhat", "Mishra", "Tiwari", "Agarwal", "Saxena",
+    "Kulkarni", "Desai", "Shah", "Kapoor", "Malhotra", "Khanna", "Chopra"
+]
 
-def random_name(used):
-    for _ in range(200):
-        n = f"{random.choice(FIRST_NAMES)} {random.choice(LAST_NAMES)}"
-        if n not in used:
-            used.add(n)
-            return n
-    return f"{random.choice(FIRST_NAMES)} {random.choice(LAST_NAMES)}"
+months = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"]
 
-def match_score_for_status(status, exp):
-    if status == "Placed":
-        base = random.randint(62, 98)
-        return round(min(base + exp * 0.8, 99), 1)
-    if status == "Pending":
-        return round(random.uniform(38, 73), 1)
-    return round(random.uniform(20, 55), 1)
+statuses = ["Placed", "In Process", "Not Placed", "On Bench", "Offer Accepted", "Offer Declined"]
+status_weights = [0.40, 0.25, 0.15, 0.10, 0.07, 0.03]
 
-rows = []
-used_names = set()
-# Distribution: 125 Placed, 85 Pending, 40 Rejected
-status_pool = (["Placed"] * 125) + (["Pending"] * 85) + (["Rejected"] * 40)
-random.shuffle(status_pool)
+education_levels = ["B.Tech", "B.E.", "B.Sc", "M.Tech", "MBA", "MCA", "BCA", "M.Sc", "B.Com", "M.Com"]
 
-for i, status in enumerate(status_pool):
-    idx = i + 1
-    domain = random.choice(list(DOMAINS.keys()))
-    info   = DOMAINS[domain]
-    role   = random.choice(info["roles"])
-    exp    = round(random.uniform(0.5, 8.5), 1)
+records = []
+candidate_id = 10001
 
-    n_skills = random.randint(3, 8)
-    skills   = ", ".join(random.sample(info["skills"], min(n_skills, len(info["skills"]))))
+for domain, config in domain_config.items():
+    for _ in range(config["count"]):
+        name = f"{random.choice(first_names)} {random.choice(last_names)}"
+        role = random.choice(config["roles"])
+        num_skills = random.randint(3, 7)
+        skills = ", ".join(random.sample(config["skills_pool"], min(num_skills, len(config["skills_pool"]))))
+        experience = round(random.uniform(0.5, 12.0), 1)
+        location = random.choice(indian_cities)
+        status = random.choices(statuses, weights=status_weights)[0]
+        client = random.choice(client_companies) if status in ["Placed", "Offer Accepted"] else "N/A"
+        match_score = random.randint(55, 98) if status == "Placed" else random.randint(30, 75)
+        joined_month = random.choice(months) + " " + random.choice(["2024", "2025", "2026"])
+        education = random.choice(education_levels)
+        salary_lpa = round(random.uniform(3.0, 35.0), 1) if status == "Placed" else 0.0
 
-    client = random.choice(CLIENTS) if status == "Placed" else "N/A"
-    score  = match_score_for_status(status, exp)
-    name   = random_name(used_names)
-    loc    = random.choice(LOCATIONS)
-    month  = random.choice(MONTHS)
-    year   = random.choice([2024, 2025, 2026])
+        records.append({
+            "Candidate_ID": f"ANC{candidate_id}",
+            "Name": name,
+            "Education": education,
+            "Domain": domain,
+            "Role": role,
+            "Skills": skills,
+            "Experience_Years": experience,
+            "Location": location,
+            "Status": status,
+            "Client_Company": client,
+            "Match_Score": match_score,
+            "Salary_LPA": salary_lpa,
+            "Joined_Month": joined_month,
+        })
+        candidate_id += 1
 
-    rows.append({
-        "Candidate_ID":    f"ANC{1000 + idx:04d}",
-        "Name":            name,
-        "Domain":          domain,
-        "Role":            role,
-        "Skills":          skills,
-        "Experience_Years": exp,
-        "Location":        loc,
-        "Status":          status,
-        "Client_Company":  client,
-        "Match_Score":     score,
-        "Joined_Month":    f"{month} {year}",
-    })
+df = pd.DataFrame(records)
+df.to_csv("/home/claude/ancile_talent_dataset.csv", index=False)
 
-df = pd.DataFrame(rows)
-df.to_csv("candidates.csv", index=False)
-print(f"Generated {len(df)} rows x {len(df.columns)} columns")
-print(df["Status"].value_counts())
-print(df["Domain"].value_counts())
+print(f"✅ Dataset generated: {len(df)} records")
+print(f"\n📊 Domain Distribution:")
+print(df["Domain"].value_counts().to_string())
+print(f"\n📈 Status Distribution:")
+print(df["Status"].value_counts().to_string())
+print(f"\n🏙️ Top Locations:")
+print(df["Location"].value_counts().head(5).to_string())
+print(f"\n💼 Sample Records:")
+print(df.head(3).to_string())

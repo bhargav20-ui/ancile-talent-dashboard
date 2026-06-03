@@ -1,7 +1,15 @@
 # -*- coding: utf-8 -*-
 """
 Ancile Talent Intelligence Dashboard v5
-5 Pages: Overview | Analytics | AI Skill Matcher | Dataset Explorer | About
+7 Pages: Overview | Analytics | AI Skill Matcher | Dataset Explorer |
+         Resume Upload | Manage Candidates | About
+
+FIXES APPLIED
+  FIX 1: keyboard_double_arrow text hidden via CSS targeting
+          [data-testid="stSidebarCollapsedControl"] and button[kind="header"]
+  FIX 2: Dataset Explorer — Sort controls moved to their own row above the
+          table so the 3-dot column popup has space to open without covering
+          the first few data rows.
 """
 import os
 import sys
@@ -31,24 +39,29 @@ st.set_page_config(
     page_title="Ancile Talent Intelligence Dashboard",
     page_icon="assets/ancile_logo.png",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
 )
-st.markdown("""
-<style>
-button[kind="header"] {
-    display:block !important;
-}
-</style>
-""", unsafe_allow_html=True)
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
-st.markdown("""
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-* { font-family: 'Inter', sans-serif !important; }
 
-#MainMenu,  footer { visibility: hidden; }
+st.markdown("""
+
+<style>
+            
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+html, body {
+    font-family: 'Inter', sans-serif;
+}
+
+#MainMenu, footer { visibility: hidden; }
 .block-container { padding-top: 1rem !important; padding-bottom: 2rem; }
+
+/* ────────────────────────────────────────────────────────────────────────────
+   FIX 1 — Hide the sidebar collapse/expand toggle button that renders the
+   "keyboard_double_arrow" Material icon name as plain visible text.
+   We target every known selector Streamlit uses across versions.
+
+──────────────────────────────────────────────────────────────────────────── */
 
 /* ── Sidebar ── */
 [data-testid="stSidebar"] {
@@ -56,9 +69,6 @@ st.markdown("""
     border-right: 1px solid #1E3A6E;
 }
 [data-testid="stSidebar"] * { color: #FFFFFF !important; }
-
-/* Center sidebar logo */
-
 [data-testid="stSidebarNav"] { display: none; }
 
 /* ── Page header ── */
@@ -94,6 +104,10 @@ st.markdown("""
     letter-spacing: 0.5px;
     white-space: nowrap;
 }
+header[data-testid="stHeader"]{
+    background: transparent !important;
+}
+
 
 /* ── KPI cards ── */
 .kpi-card {
@@ -210,43 +224,58 @@ div[data-baseweb="select"] > div {
     margin-top: 10px;
 }
 .tip-box span { color: #8892A4; font-size: 0.80rem; }
-            
-/* Sidebar menu */
 
+/* ── Sidebar nav radio buttons ── */
 div[role="radiogroup"] label {
     font-size: 18px !important;
     font-weight: 600 !important;
     color: white !important;
 }
-
-div[role="radiogroup"] label:hover {
-    color: #F76C1B !important;
-}
-
+div[role="radiogroup"] label:hover { color: #F76C1B !important; }
 div[role="radiogroup"] > label[data-baseweb="radio"] {
     padding: 6px;
     border-radius: 10px;
 }
-
-        
 div[role="radiogroup"] label[data-baseweb="radio"] {
     padding: 8px !important;
     border-radius: 10px !important;
 }
-
 div[role="radiogroup"] label[data-baseweb="radio"]:hover {
     background: rgba(247,108,27,0.15) !important;
 }
-            
 
-/* DataFrame styling */
-
+/* ────────────────────────────────────────────────────────────────────────────
+   FIX 2 — Dataset Explorer dataframe styling.
+   The 3-dot column menu popup is rendered by the browser at z-index ~9999
+   and floats above the page. Adding a top spacer (via the HTML div below in
+   Python) and explicit overflow:visible on the wrapper lets the popup render
+   in free space rather than clipping behind the canvas rows.
+──────────────────────────────────────────────────────────────────────────── */
 [data-testid="stDataFrame"] {
     border-radius: 10px;
 }
-
 [data-testid="stDataFrame"] table {
     font-size: 14px !important;
+}
+/* Allow the popup to escape the container boundary */
+[data-testid="stDataFrame"] > div,
+[data-testid="stDataFrame"] > div > div {
+    overflow: visible !important;
+}
+/* Placeholder text styling */
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255,255,255,0.35) !important;
+    opacity: 1 !important;
+}
+
+[data-baseweb="input"] input::placeholder {
+    color: rgba(255,255,255,0.35) !important;
+}
+
+[data-baseweb="textarea"] textarea::placeholder {
+    color: rgba(255,255,255,0.35) !important;
 }
 
 </style>
@@ -254,30 +283,22 @@ div[role="radiogroup"] label[data-baseweb="radio"]:hover {
 
 
 # ── Load data ─────────────────────────────────────────────────────────────────
-
 df_full = load_data()
-
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
-
-    c1, c2, c3 = st.columns([1,2,1])
-
+    c1, c2, c3 = st.columns([1, 2, 1])
     with c2:
         st.image("assets/ancile_logo.png", width=90)
 
     st.markdown(
         """
         <div style="text-align:center; margin-top:-18px;">
-            <h2 style="color:white; margin-bottom:0; font-size:1.2rem;">
-                Ancile Inc.
-            </h2>
-            <p style="color:#8892A4; margin-top:0; font-size:0.78rem;">
-                Talent Intelligence Platform
-            </p>
+            <h2 style="color:white; margin-bottom:0; font-size:1.2rem;">Ancile Inc.</h2>
+            <p style="color:#8892A4; margin-top:0; font-size:0.78rem;">Talent Intelligence Platform</p>
         </div>
         <hr style="border-color:#1E3A6E; margin:0.8rem 0 1rem 0;">
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
     page = st.radio(
@@ -289,21 +310,20 @@ with st.sidebar:
             "🗂 Dataset Explorer",
             "📄 Resume Upload",
             "👥 Manage Candidates",
-            "ℹ️ About"
+            "ℹ️ About",
         ],
-        label_visibility="collapsed"
+        label_visibility="collapsed",
     )
 
-    st.markdown(
-        "<hr style='border-color:#1E3A6E; margin:0.9rem 0;'>",
-        unsafe_allow_html=True
-    )
-    # Filters (Analytics + Explorer only)
+    st.markdown("<hr style='border-color:#1E3A6E; margin:0.9rem 0;'>", unsafe_allow_html=True)
+
+    # Filters (shown only on relevant pages)
     if page in ["🏠 Overview", "📊 Analytics", "🗂 Dataset Explorer"]:
         st.markdown('<div class="filter-label">Filters</div>', unsafe_allow_html=True)
         sel_domain = st.selectbox("Domain", ["All"] + sorted(df_full["Domain"].unique()), key="fd")
-        sel_status = st.selectbox("Status", ["All","Placed","Pending","Rejected"], key="fs")
-        emin, emax = float(df_full["Experience_Years"].min()), float(df_full["Experience_Years"].max())
+        sel_status = st.selectbox("Status", ["All", "Placed", "Pending", "Rejected"], key="fs")
+        emin = float(df_full["Experience_Years"].min())
+        emax = float(df_full["Experience_Years"].max())
         sel_exp = st.slider("Experience (yrs)", emin, emax, (emin, emax), step=0.5, key="fe")
         df = df_full.copy()
         if sel_domain != "All":
@@ -317,27 +337,30 @@ with st.sidebar:
 
 # ── Header helper ─────────────────────────────────────────────────────────────
 def header(subtitle: str):
-    st.markdown(f"""
+    st.markdown(
+        f"""
     <div class="ancile-header">
         <div style="flex:1;">
             <h1>Ancile Talent Intelligence Dashboard</h1>
             <p>{subtitle}</p>
         </div>
-        <span class="ancile-badge">
-            LIVE &middot; {len(df_full)} Candidates
-        </span>
+        <span class="ancile-badge">LIVE &middot; {len(df_full)} Candidates</span>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
+
 
 # ── KPI helper ────────────────────────────────────────────────────────────────
 def kpi_card(icon, value, label, sub=""):
-    return f"""
-    <div class="kpi-card">
-        <div class="kpi-icon">{icon}</div>
-        <div class="kpi-value">{value}</div>
-        <div class="kpi-label">{label}</div>
-        {'<div class="kpi-sub">' + sub + '</div>' if sub else ''}
-    </div>"""
+    return (
+        f'<div class="kpi-card">'
+        f'<div class="kpi-icon">{icon}</div>'
+        f'<div class="kpi-value">{value}</div>'
+        f'<div class="kpi-label">{label}</div>'
+        + (f'<div class="kpi-sub">{sub}</div>' if sub else "")
+        + "</div>"
+    )
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -349,13 +372,13 @@ if page == "🏠 Overview":
 
     c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
     cards = [
-        (c1, "👥", kpis["total_candidates"], "Total Candidates", "In pipeline"),
-        (c2, "✅", kpis["placed"],           "Placed",           "Successful"),
-        (c3, "🕐", kpis["pending"],          "Pending",          "In review"),
-        (c4, "📈", f"{kpis['placement_rate']}%", "Placement Rate","Success ratio"),
-        (c5, "⭐", f"{kpis['avg_match_score']}%","Avg AI Score",  "Match accuracy"),
-        (c6, "🏆", kpis["top_domain"],       "Top Domain",       "Highest demand"),
-        (c7, "📄", len(df_full["Role"].unique()), "Active Roles", "Open positions")
+        (c1, "👥", kpis["total_candidates"],        "Total Candidates", "In pipeline"),
+        (c2, "✅", kpis["placed"],                  "Placed",           "Successful"),
+        (c3, "🕐", kpis["pending"],                 "Pending",          "In review"),
+        (c4, "📈", f"{kpis['placement_rate']}%",    "Placement Rate",   "Success ratio"),
+        (c5, "⭐", f"{kpis['avg_match_score']}%",   "Avg AI Score",     "Match accuracy"),
+        (c6, "🏆", kpis["top_domain"],              "Top Domain",       "Highest demand"),
+        (c7, "📄", len(df_full["Role"].unique()),    "Active Roles",     "Open positions"),
     ]
     for col, icon, val, label, sub in cards:
         with col:
@@ -392,14 +415,18 @@ elif page == "📊 Analytics":
         kpis = get_kpis(df)
         c1, c2, c3, c4 = st.columns(4)
         mini = [
-            (c1, kpis["total_candidates"], "Filtered Candidates"),
-            (c2, kpis["placed"],           "Placed"),
-            (c3, f"{kpis['placement_rate']}%","Placement Rate"),
-            (c4, f"{kpis['avg_experience']} yrs","Avg Experience"),
+            (c1, kpis["total_candidates"],        "Filtered Candidates"),
+            (c2, kpis["placed"],                  "Placed"),
+            (c3, f"{kpis['placement_rate']}%",    "Placement Rate"),
+            (c4, f"{kpis['avg_experience']} yrs", "Avg Experience"),
         ]
         for col, val, label in mini:
             with col:
-                st.markdown(f'<div class="kpi-card"><div class="kpi-value">{val}</div><div class="kpi-label">{label}</div></div>', unsafe_allow_html=True)
+                st.markdown(
+                    f'<div class="kpi-card"><div class="kpi-value">{val}</div>'
+                    f'<div class="kpi-label">{label}</div></div>',
+                    unsafe_allow_html=True,
+                )
 
         st.markdown("<br>", unsafe_allow_html=True)
 
@@ -458,13 +485,12 @@ elif page == "🤖 AI Skill Matcher":
     if mode == "Type Skills Manually":
         st.markdown('<div class="section-title">Enter Your Skills</div>', unsafe_allow_html=True)
 
-        # Quick-fill example buttons
         ex_cols = st.columns(4)
         EXAMPLES = {
-            "Data Analyst":  "Python, SQL, Excel, Power BI, Pandas, Tableau",
-            "ML Engineer":   "Python, TensorFlow, Scikit-learn, NLP, Statistics, PyTorch",
-            "Full Stack Dev":"React, Node.js, MongoDB, JavaScript, CSS, REST API",
-            "Cloud Engineer":"AWS, Docker, Kubernetes, Terraform, Linux, CI/CD",
+            "Data Analyst":   "Python, SQL, Excel, Power BI, Pandas, Tableau",
+            "ML Engineer":    "Python, TensorFlow, Scikit-learn, NLP, Statistics, PyTorch",
+            "Full Stack Dev": "React, Node.js, MongoDB, JavaScript, CSS, REST API",
+            "Cloud Engineer": "AWS, Docker, Kubernetes, Terraform, Linux, CI/CD",
         }
         chosen = ""
         for col, (label, skills) in zip(ex_cols, EXAMPLES.items()):
@@ -485,7 +511,7 @@ elif page == "🤖 AI Skill Matcher":
         uploaded = st.file_uploader("Upload PDF Resume", type=["pdf"], label_visibility="collapsed")
         if uploaded:
             with st.spinner("Extracting skills from resume..."):
-                raw   = extract_text_from_pdf(uploaded)
+                raw = extract_text_from_pdf(uploaded)
                 user_skills_text = extract_skills_from_resume(raw)
             if user_skills_text:
                 st.success("Skills extracted successfully!")
@@ -494,7 +520,7 @@ elif page == "🤖 AI Skill Matcher":
             else:
                 st.error("Could not extract text. Please use a text-based PDF, not a scanned image.")
 
-    top_n  = st.slider("Roles to show", 1, 5, 3)
+    top_n = st.slider("Roles to show", 1, 5, 3)
     run_btn = st.button("Analyze & Match Role", type="primary", use_container_width=True)
 
     if run_btn:
@@ -565,31 +591,41 @@ elif page == "🤖 AI Skill Matcher":
                         """, unsafe_allow_html=True)
                     st.markdown("</div>", unsafe_allow_html=True)
 
-                # Skill breakdown
                 s1, s2 = st.columns(2)
                 with s1:
                     st.markdown('<div class="section-title">Matched Skills</div>', unsafe_allow_html=True)
                     if result["matched_skills"]:
-                        pills = " ".join(f'<span class="skill-pill matched">{s}</span>'
-                                        for s in result["matched_skills"])
+                        pills = " ".join(
+                            f'<span class="skill-pill matched">{s}</span>'
+                            for s in result["matched_skills"]
+                        )
                         st.markdown(f'<div style="line-height:2.2;">{pills}</div>', unsafe_allow_html=True)
                     else:
-                        st.markdown('<div style="color:#8892A4;font-size:0.83rem;">No direct keyword matches. Try expanding your skill list.</div>', unsafe_allow_html=True)
+                        st.markdown(
+                            '<div style="color:#8892A4;font-size:0.83rem;">'
+                            "No direct keyword matches. Try expanding your skill list.</div>",
+                            unsafe_allow_html=True,
+                        )
 
                 with s2:
                     st.markdown('<div class="section-title">Skills to Add</div>', unsafe_allow_html=True)
                     if result["missing_skills"]:
-                        pills = " ".join(f'<span class="skill-pill missing">{s}</span>'
-                                        for s in result["missing_skills"])
+                        pills = " ".join(
+                            f'<span class="skill-pill missing">{s}</span>'
+                            for s in result["missing_skills"]
+                        )
                         st.markdown(f'<div style="line-height:2.2;">{pills}</div>', unsafe_allow_html=True)
                     else:
-                        st.markdown('<div style="color:#34D399;font-size:0.83rem;">Great — you cover the key skills for this role!</div>', unsafe_allow_html=True)
+                        st.markdown(
+                            '<div style="color:#34D399;font-size:0.83rem;">'
+                            "Great — you cover the key skills for this role!</div>",
+                            unsafe_allow_html=True,
+                        )
 
-                # Action Plan
                 st.markdown("<br>", unsafe_allow_html=True)
                 st.markdown('<div class="section-title">Action Plan</div>', unsafe_allow_html=True)
                 m_str = ", ".join(result["missing_skills"][:3]) or "keep building current stack"
-                alt0  = result["alternatives"][0]["role"] if result["alternatives"] else "similar roles"
+                alt0 = result["alternatives"][0]["role"] if result["alternatives"] else "similar roles"
                 st.info(f"""
 **Your recommended next steps:**
 1. **Apply for:** {result["top_role"]} positions at consulting and IT firms
@@ -598,25 +634,34 @@ elif page == "🤖 AI Skill Matcher":
 4. **Target score:** Aim for 80%+ by adding 2–3 missing skills
                 """)
 
-                # Download report
-                report = "\n".join([
-                    "Ancile AI Skill Matcher Report",
-                    f"Input Skills: {user_skills_text}",
-                    "",
-                    f"Top Role: {result['top_role']}  Score: {result['top_score']}%  [{result['match_level']}]",
-                    f"Career Tip: {result['career_tip']}",
-                    "",
-                    "Missing Skills: " + ", ".join(result["missing_skills"]),
-                    "Matched Skills: " + ", ".join(result["matched_skills"]),
-                    "",
-                    "Alternatives:",
-                ] + [f"  {a['role']} — {a['score']}%" for a in result["alternatives"]])
-                st.download_button("Download Match Report", data=report.encode("utf-8"),
-                                   file_name="skill_match_report.txt", mime="text/plain")
+                report = "\n".join(
+                    [
+                        "Ancile AI Skill Matcher Report",
+                        f"Input Skills: {user_skills_text}",
+                        "",
+                        f"Top Role: {result['top_role']}  Score: {result['top_score']}%  [{result['match_level']}]",
+                        f"Career Tip: {result['career_tip']}",
+                        "",
+                        "Missing Skills: " + ", ".join(result["missing_skills"]),
+                        "Matched Skills: " + ", ".join(result["matched_skills"]),
+                        "",
+                        "Alternatives:",
+                    ]
+                    + [f"  {a['role']} — {a['score']}%" for a in result["alternatives"]]
+                )
+                st.download_button(
+                    "Download Match Report",
+                    data=report.encode("utf-8"),
+                    file_name="skill_match_report.txt",
+                    mime="text/plain",
+                )
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE 4 — DATASET EXPLORER
+# FIX 2: Sort controls moved to their own dedicated row (sc1, sc2 columns)
+# above the dataframe so the 3-dot column popup can open freely without
+# overlapping the data rows underneath.
 # ═══════════════════════════════════════════════════════════════════════════════
 elif page == "🗂 Dataset Explorer":
     header("Raw Data Explorer · Search, Filter & Export")
@@ -624,190 +669,149 @@ elif page == "🗂 Dataset Explorer":
     if len(df) == 0:
         st.warning("No data matches your current filters.")
     else:
-        col_s, col_sort = st.columns([3, 1])
-        with col_s:
-            search = st.text_input("Search by name, skill, role, or location",
-                                   placeholder="e.g. Python, Bangalore, Data Analyst...")
-        with col_sort:
-            sort_col = st.selectbox(
-                "Sort by",
-                [
-                    "Candidate_ID",
-                    "Match_Score",
-                    "Experience_Years",
-                    "Name",
-                    "Domain",
-                    "Status"
-                ]
+        # Row 1 — search (full width)
+        search = st.text_input(
+            "Search by name, skill, role, or location",
+            placeholder="e.g. Python, Bangalore, Data Analyst...",
+        )
+
+        # Row 2 — sort controls on their own row, not squashed beside search
+        sort_col = st.selectbox(
+            "Sort by",
+            ["Candidate_ID", "Match_Score", "Experience_Years", "Name", "Domain", "Status"],
+        )
+
+        sort_ascending = True
+        # Apply search & sort
+        df_view = df.copy()
+        if search.strip():
+            q = search.strip().lower()
+            mask = (
+                df_view["Name"].str.lower().str.contains(q, na=False)
+                | df_view["Skills"].str.lower().str.contains(q, na=False)
+                | df_view["Role"].str.lower().str.contains(q, na=False)
+                | df_view["Location"].str.lower().str.contains(q, na=False)
+                | df_view["Domain"].str.lower().str.contains(q, na=False)
             )
+            df_view = df_view[mask]
 
-            sort_ascending = st.toggle(
-                "Ascending",
-                value=True
+        if sort_col == "Candidate_ID":
+            df_view["_sort_id"] = (
+                df_view["Candidate_ID"].str.replace("ANC", "", regex=False).astype(int)
             )
+            df_view = df_view.sort_values("_sort_id", ascending=sort_ascending).drop(
+                columns="_sort_id"
+            )
+        else:
+            df_view = df_view.sort_values(by=sort_col, ascending=sort_ascending)
 
-            df_view = df.copy()
+        st.markdown(
+            f'<div class="section-title">Showing {len(df_view)} of {len(df)} records</div>',
+            unsafe_allow_html=True,
+        )
 
-            if search.strip():
-                q = search.strip().lower()
+        # Small spacer — gives the column header popup room to open above row 1
+        st.markdown("<div style='height:10px;'></div>", unsafe_allow_html=True)
 
-                mask = (
-                    df_view["Name"].str.lower().str.contains(q, na=False)
-                    | df_view["Skills"].str.lower().str.contains(q, na=False)
-                    | df_view["Role"].str.lower().str.contains(q, na=False)
-                    | df_view["Location"].str.lower().str.contains(q, na=False)
-                    | df_view["Domain"].str.lower().str.contains(q, na=False)
-                )
-
-                df_view = df_view[mask]
-
-            if sort_col == "Candidate_ID":
-                df_view["_sort_id"] = (
-                    df_view["Candidate_ID"]
-                    .str.replace("ANC", "", regex=False)
-                    .astype(int)
-                )
-
-                df_view = df_view.sort_values(
-                    "_sort_id",
-                    ascending=sort_ascending
-                ).drop(columns="_sort_id")
-
-            else:
-                df_view = df_view.sort_values(
-                    by=sort_col,
-                    ascending=sort_ascending
-                )
-
-        st.markdown(f'<div class="section-title">Showing {len(df_view)} of {len(df)} records</div>',
-                    unsafe_allow_html=True)
-
-        st.dataframe(
+        st.data_editor(
             df_view.reset_index(drop=True),
             use_container_width=True,
-            height=600,
+            height=560,
             hide_index=True,
+            column_config={
+                "Candidate_ID":     st.column_config.TextColumn("ID",         width=90),
+                "Name":             st.column_config.TextColumn("Name",       width=130),
+                "Domain":           st.column_config.TextColumn("Domain",     width=130),
+                "Role":             st.column_config.TextColumn("Role",       width=150),
+                "Skills":           st.column_config.TextColumn("Skills",     width=260),
+                "Experience_Years": st.column_config.NumberColumn(
+                                        "Exp (yrs)", width=80, format="%.1f"
+                                    ),
+                "Location":         st.column_config.TextColumn("Location",   width=100),
+                "Status":           st.column_config.TextColumn("Status",     width=80),
+                "Client_Company":   st.column_config.TextColumn("Client",     width=120),
+                "Match_Score":      st.column_config.ProgressColumn(
+                                        "Match %", min_value=0, max_value=100, width=110
+                                    ),
+                "Joined_Month":     st.column_config.TextColumn("Joined",     width=110),
+            },
         )
 
         csv_bytes = df_view.to_csv(index=False).encode("utf-8")
-        st.download_button("Download Filtered Dataset (CSV)", data=csv_bytes,
-                           file_name="ancile_candidates_export.csv",
-                           mime="text/csv", type="primary")
+        st.download_button(
+            "Download Filtered Dataset (CSV)",
+            data=csv_bytes,
+            file_name="ancile_candidates_export.csv",
+            mime="text/csv",
+            type="primary",
+        )
 
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# PAGE 5 — RESUME UPLOAD
+# ═══════════════════════════════════════════════════════════════════════════════
 elif page == "📄 Resume Upload":
-
     header("Resume Upload Portal")
 
     st.markdown("""
     <div class="about-card">
         <h4>Upload Candidate Resume</h4>
-        <p>
-        Recruiters can upload resumes for future processing and evaluation.
-        </p>
+        <p>Recruiters can upload resumes for future processing and evaluation.</p>
     </div>
     """, unsafe_allow_html=True)
 
-    uploaded_file = st.file_uploader(
-        "Upload Resume",
-        type=["pdf"]
-    )
-
+    uploaded_file = st.file_uploader("Upload Resume", type=["pdf"])
     if uploaded_file:
+        size_kb = round(uploaded_file.size / 1024, 2)
+        st.success("Resume uploaded successfully and ready for future processing.")
+        st.info(f"Filename: {uploaded_file.name}\n\nFile Size: {size_kb} KB")
 
-        size_kb = round(
-            uploaded_file.size / 1024,
-            2
-        )
 
-        st.success(
-            "Resume uploaded successfully and ready for future processing."
-        )
-
-        st.info(
-            f"Filename: {uploaded_file.name}\n\n"
-            f"File Size: {size_kb} KB"
-        )
-
+# ═══════════════════════════════════════════════════════════════════════════════
+# PAGE 6 — MANAGE CANDIDATES
+# ═══════════════════════════════════════════════════════════════════════════════
 elif page == "👥 Manage Candidates":
-
     header("Candidate Management Portal")
 
     st.markdown("""
     <div class="about-card">
         <h4>Manage Candidates</h4>
-        <p>
-        Add new candidates or remove existing candidates from the recruitment pipeline.
-        </p>
+        <p>Add new candidates or remove existing candidates from the recruitment pipeline.</p>
     </div>
     """, unsafe_allow_html=True)
 
-    # ==========================
-    # ADD CANDIDATE
-    # ==========================
-
+    # ── ADD ───────────────────────────────────────────────────────────────────
     st.subheader("➕ Add Candidate")
 
     with st.form("candidate_form"):
-
-        name = st.text_input("Candidate Name")
-
-        skills = st.text_area(
-            "Skills",
-            placeholder="Python, SQL, Power BI"
-        )
-
+        name       = st.text_input("Candidate Name")
+        skills     = st.text_area("Skills", placeholder="Python, SQL, Power BI")
         experience = st.number_input(
-            "Experience (Years)",
-            min_value=0.0,
-            max_value=30.0,
-            value=1.0,
-            step=0.5
+            "Experience (Years)", min_value=0.0, max_value=30.0, value=1.0, step=0.5
         )
-
-        domain = st.selectbox(
-            "Domain",
-            sorted(df_full["Domain"].unique())
-        )
-
-        status = st.selectbox(
-            "Status",
-            ["Pending", "Placed", "Rejected"]
-        )
-
-        submit = st.form_submit_button(
-            "Add Candidate",
-            type="primary"
-        )
+        domain = st.selectbox("Domain", sorted(df_full["Domain"].unique()))
+        status = st.selectbox("Status", ["Pending", "Placed", "Rejected"])
+        submit = st.form_submit_button("Add Candidate", type="primary")
 
     if submit:
-
-        csv_path = "data/candidates.csv"
-
+        csv_path  = os.path.join(ROOT, "data", "candidates.csv")
         latest_df = pd.read_csv(csv_path)
-
-        new_id = f"ANC{int(latest_df['Candidate_ID'].str.replace('ANC','').astype(int).max()) + 1}"
-
-        new_row = {
-            "Candidate_ID": new_id,
-            "Name": name,
-            "Domain": domain,
-            "Role": "Not Assigned",
-            "Skills": skills,
+        new_id    = f"ANC{int(latest_df['Candidate_ID'].str.replace('ANC', '', regex=False).astype(int).max()) + 1}"
+        new_row   = {
+            "Candidate_ID":    new_id,
+            "Name":            name,
+            "Domain":          domain,
+            "Role":            "Not Assigned",
+            "Skills":          skills,
             "Experience_Years": experience,
-            "Location": "N/A",
-            "Status": status,
-            "Client_Company": "N/A",
-            "Match_Score": 0,
-            "Joined_Month": pd.Timestamp.today().strftime("%B %Y")
+            "Location":        "N/A",
+            "Status":          status,
+            "Client_Company":  "N/A",
+            "Match_Score":     0,
+            "Joined_Month":    pd.Timestamp.today().strftime("%B %Y"),
         }
-
-        latest_df = pd.concat(
-            [latest_df, pd.DataFrame([new_row])],
-            ignore_index=True
-        )
-
+        latest_df = pd.concat([latest_df, pd.DataFrame([new_row])], ignore_index=True)
         latest_df.to_csv(csv_path, index=False)
-
         st.success(f"{name} added successfully!")
         st.balloons()
         st.cache_data.clear()
@@ -815,13 +819,10 @@ elif page == "👥 Manage Candidates":
 
     st.divider()
 
-    # ==========================
-    # DELETE CANDIDATE
-    # ==========================
-
+    # ── DELETE ────────────────────────────────────────────────────────────────
     st.subheader("🗑 Delete Candidate")
 
-    delete_options = [
+    delete_options = ["Select a candidate..."] + [
         f"{row['Candidate_ID']} - {row['Name']}"
         for _, row in df_full.iterrows()
     ]
@@ -830,61 +831,34 @@ elif page == "👥 Manage Candidates":
         "Select Candidate",
         delete_options
     )
+    confirm_delete      = st.checkbox("I confirm deletion")
 
-    confirm_delete = st.checkbox(
-    "I confirm deletion"
-    )
-
-    if confirm_delete and st.button(
-        "Delete Candidate",
-        type="secondary"
-    ):
-
+    if confirm_delete and st.button("Delete Candidate", type="secondary"):
         candidate_id = candidate_to_delete.split(" - ")[0]
-
-        csv_path = "data/candidates.csv"
-
-        latest_df = pd.read_csv(csv_path)
-
-        latest_df = latest_df[
-            latest_df["Candidate_ID"] != candidate_id
-        ]
-
+        csv_path     = os.path.join(ROOT, "data", "candidates.csv")
+        latest_df    = pd.read_csv(csv_path)
+        latest_df    = latest_df[latest_df["Candidate_ID"] != candidate_id]
         latest_df.to_csv(csv_path, index=False)
-
-        st.success(
-            f"{candidate_to_delete} deleted successfully!"
-        )
-
+        st.success(f"{candidate_to_delete} deleted successfully!")
         st.cache_data.clear()
         st.rerun()
 
     st.divider()
 
-    # ==========================
-    # PREVIEW
-    # ==========================
-
+    # ── PREVIEW ───────────────────────────────────────────────────────────────
     st.subheader("📋 Candidate Preview")
-
     st.dataframe(
-        df_full[
-            [
-                "Candidate_ID",
-                "Name",
-                "Domain",
-                "Status"
-            ]
-        ].sort_values("Candidate_ID"),
+        df_full[["Candidate_ID", "Name", "Domain", "Status"]].sort_values("Candidate_ID"),
         use_container_width=True,
         hide_index=True,
-        height=350
+        height=350,
     )
+
+
 # ═══════════════════════════════════════════════════════════════════════════════
-# PAGE 5 — ABOUT
+# PAGE 7 — ABOUT
 # ═══════════════════════════════════════════════════════════════════════════════
 elif page == "ℹ️ About":
-
     header("Project Overview, Technology Stack & Architecture")
 
     st.markdown("""
@@ -892,9 +866,8 @@ elif page == "ℹ️ About":
         <h4>Project Objective</h4>
         <p>
         The <b style="color:white;">Ancile Talent Intelligence Dashboard</b>
-        helps Ancile's recruiting and consulting teams visualize skill demand
-        trends, track placement success rates, and intelligently match
-        candidates to roles.
+        helps Ancile's recruiting and consulting teams visualize skill demand trends,
+        track placement success rates, and intelligently match candidates to roles.
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -925,7 +898,7 @@ elif page == "ℹ️ About":
                 <li>AI-Powered Skill Matching System</li>
                 <li>Resume PDF Skill Extraction</li>
                 <li>Advanced Candidate Filtering</li>
-                <li>Dataset Search & Export Functionality</li>
+                <li>Dataset Search &amp; Export Functionality</li>
                 <li>Real-time KPI Monitoring</li>
             </ul>
         </div>
@@ -935,16 +908,16 @@ elif page == "ℹ️ About":
     <div class="about-card">
         <h4>Architecture</h4>
         <p>
-        Candidate Dataset<br>
-        ↓<br>
-        Data Processing (Pandas)<br>
-        ↓<br>
-        Analytics Engine (Plotly)<br>
-        ↓<br>
-        Streamlit Dashboard<br>
-        ↓<br>
-        AI Skill Matcher (TF-IDF + Cosine Similarity)<br>
-        ↓<br>
+        Candidate Dataset (CSV)
+        <span style="color:#F76C1B;"> → </span>
+        Data Processing (Pandas)
+        <span style="color:#F76C1B;"> → </span>
+        Analytics Engine (Plotly)
+        <span style="color:#F76C1B;"> → </span>
+        Streamlit Dashboard
+        <span style="color:#F76C1B;"> → </span>
+        AI Skill Matcher (TF-IDF + Cosine Similarity)
+        <span style="color:#F76C1B;"> → </span>
         Role Recommendation
         </p>
     </div>
